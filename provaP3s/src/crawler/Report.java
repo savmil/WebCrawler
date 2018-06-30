@@ -1,5 +1,5 @@
 package crawler;
 
-public class p {
+public class Report {
 
 }

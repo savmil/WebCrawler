@@ -1,5 +1,5 @@
 package crawler;
 
-public class Button {
+public class Button extends Element{
 
 }

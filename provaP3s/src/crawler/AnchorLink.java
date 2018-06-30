@@ -1,5 +1,5 @@
 package crawler;
 
-public class AnchorLink {
+public class AnchorLink extends Element {
 
 }

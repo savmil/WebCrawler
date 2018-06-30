@@ -19,13 +19,15 @@ public class BrowserDriverBenchmark implements BrowserDriver {
 	public VisitedPage trigger(Element element) 
 	{	
         WebElement event = driver.findElementByXPath(element.getXPath()); // dobbiamo fare in modo tale che un element sia un Web element altrimenti non è cliccabile
-        trig.click();
+        event.click();
+        return null;
       
 	}
 	@Override
 	public XMLObject load(String url) {
 		// TODO Auto-generated method stub
 		driver.get(url);
+		String HTMLPageSource = driver.getPageSource();
 		return null;
 	}
 

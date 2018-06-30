@@ -1,8 +1,19 @@
 package crawler;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+
+import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
+
+import net.bytebuddy.dynamic.scaffold.MethodGraph.NodeList;
 
 import javax.xml.crypto.dsig.XMLObject;
+import javax.xml.crypto.dsig.XMLSignatureFactory;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -28,7 +39,33 @@ public class BrowserDriverBenchmark implements BrowserDriver {
 		// TODO Auto-generated method stub
 		driver.get(url);
 		String HTMLPageSource = driver.getPageSource();
-		return null;
+		
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+        try {
+               DocumentBuilder builder = dbf.newDocumentBuilder();
+               Document document = builder.parse(HTMLPageSource);//dovrebbe essere una verisione xml del file il problema è salvarlo come oggetto
+               
+               
+              
+               XMLObject object = fac.newXMLObject(nl., "object-1", null, null);
+               
+        } catch (SAXException sxe) {
+               Exception  x = sxe;
+               if (sxe.getException() != null)
+                      x = sxe.getException();
+               x.printStackTrace();
+        } catch (ParserConfigurationException pce) {
+               pce.printStackTrace();
+        } catch (IOException ioe) {
+               ioe.printStackTrace();
+        }
+      
+       
+        List content = Collections.singletonList(fac.newManifest(references));
+        
+        XMLObject xo;
+
+		return ;
 	}
 
 	

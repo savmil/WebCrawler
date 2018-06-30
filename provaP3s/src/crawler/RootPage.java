@@ -22,6 +22,9 @@ public abstract class RootPage extends VisitedPage{
 		this.elementList = elements;
 	}
 	
+	public void loadElements(){
+		
+	}
+}
 	
 
-}

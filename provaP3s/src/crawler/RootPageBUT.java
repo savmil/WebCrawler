@@ -10,5 +10,4 @@ public class RootPageBUT extends RootPage{
 	public RootPageBUT(String url, XMLObject xmlDescr) {
 		super(url,xmlDescr);	
 	}
-
 }

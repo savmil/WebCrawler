@@ -18,7 +18,7 @@ public class BrowserDriverBenchmark implements BrowserDriver {
 	}
 	public VisitedPage trigger(Element element) 
 	{	
-        WebElement trig=Element; // dobbiamo fare in modo tale che un element sia un Web element altrimenti non è cliccabile
+        WebElement event = driver.findElementByXPath(element.getXPath()); // dobbiamo fare in modo tale che un element sia un Web element altrimenti non è cliccabile
         trig.click();
       
 	}

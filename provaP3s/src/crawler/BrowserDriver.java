@@ -2,5 +2,5 @@ package crawler;
 
 public interface BrowserDriver 
 {
-	//wewe
+	public VisitedPage trigger(Element element);
 }

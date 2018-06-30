@@ -1,5 +1,6 @@
 package crawler;
 
-public class RootPage {
-
+public abstract class RootPage {
+	public void loadElements(){}
+	public void updateXML(){}
 }

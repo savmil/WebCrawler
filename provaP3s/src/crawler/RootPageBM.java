@@ -1,5 +1,5 @@
 package crawler;
 
-public class RootPageBM {
+public class RootPageBM extends RootPage{
 
 }

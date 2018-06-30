@@ -1,5 +1,6 @@
 package crawler;
 
-public class ComputeManager {
 
+public class ComputeManager {
+	
 }

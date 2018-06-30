@@ -33,6 +33,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.xml.sax.XMLReader;
 public class Prova 
 {
+	//**********************
+	// vedete questo commento???
+	//************
 	public static void main(String[] args)
 	{
 		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Saverio\\Desktop\\chromedriver.exe");

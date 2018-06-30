@@ -34,7 +34,7 @@ import org.xml.sax.XMLReader;
 public class Prova 
 {
 	//**********************
-	// vedete questo commento???
+	// vedete questo commento????????
 	//**************
 	public static void main(String[] args)
 	{

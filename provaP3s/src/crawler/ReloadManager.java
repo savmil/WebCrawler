@@ -6,30 +6,30 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class ReloadManager 
 {
-	private RemoteWebDriver driverBUT;
-	private RemoteWebDriver driverBM;
+	private BrowserDriverUnderTest driverBUT;
+	private BrowserDriverBenchmark driverBM;
 	private RootPageBM RootBM;
 	private RootPageBUT RootBUT;
 	private String rootURL;
 	
 	public ReloadManager(String rootURL,RootPageBM RBM,RootPageBUT RBUT) {
-		driverBUT = new FirefoxDriver();
-		driverBM = new ChromeDriver();
+
 		RootBM = RBM;
 		RootBUT = RBUT;
 		this.rootURL=rootURL;
 	}
 	
-	void /*XML*/ load(/*Qui non credo serva il parametro URL*/){
-		
-		driverBUT.get(rootURL);
+	void Reload(){
+		driverBM=new BrowserDriverBenchmark();
+		driverBUT.load(rootURL);
 		
 		RootBUT.updateXML(/*XML*/);
 		RootBUT.loadElements();
 		
 		//Par ---
 		
-		driverBM.get(rootURL);
+		driverBUT=new BrowserDriverUnderTest();
+		driverBUT.load(rootURL);
 		RootBM.updateXML(/*XML*/);
 		RootBM.loadElements();
 	}

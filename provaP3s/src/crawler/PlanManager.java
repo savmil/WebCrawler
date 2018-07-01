@@ -2,32 +2,25 @@ package crawler;
 
 import java.util.List;
 
-public class PlanManager 
-{
-	Element Elementlist;
-	RootPageBM rootBM;
-	public PlanManager(RootPageBM rBM)
-	{
-		rootBM=rBM;
-	}
-	public Element selectElement(List<Element> ElementList)
-	{
+public class PlanManager {
+	
+	public Element selectElement(List<Element> elementList){
 		
-		Element randomElements=new Element();
-		
-		if (ElementList.size()!=0)
-       	{
-       			int randElement=(int)(Math.random()*ElementList.size());
-       			randomElements=ElementList.get(randElement);
+		Element randomElements = new Element();
+		if (elementList.size()!=0){
+       			int randElement=(int)(Math.random()*elementList.size());
+       			randomElements=elementList.get(randElement);
         }
 		
 		return randomElements;
 	}
-	public Element plan (RootPageBM rootBM)
-	{
-		List<Element> pageElements;
-		pageElements=rootBM.getElements();
+	
+	
+	public Element plan (RootPage rootBM){
+		
+		List<Element> pageElements = rootBM.getElements();
 		Element selectedElement=selectElement(pageElements);
+		
 		return selectedElement;
 	}
 	

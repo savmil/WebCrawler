@@ -1,23 +1,20 @@
 package crawler;
 
-public class ReloadManager 
-{
-	//private BrowserDriverUnderTest driverBUT;
-	//private BrowserDriverBenchmark driverBM;
-	private RootPageBM rootBM;
-	private RootPageBUT rootBUT;
-	private String rootURL;
+public class ReloadManager {
+	private BrowserDriver driverBUT;
+	private BrowserDriver driverBM;
 	
-	public ReloadManager(String rootURL,RootPageBM RBM,RootPageBUT RBUT) {
-		rootBM = RBM;
-		rootBUT = RBUT;
-		this.rootURL=rootURL;
+	
+	public ReloadManager( BrowserDriver driverBM,BrowserDriver driverBUT) {
+		super();
+		this.driverBUT = driverBUT;
+		this.driverBM = driverBM;
 	}
 	
-	void Reload(){
+	void reload(String rootURL,RootPage rootBM,RootPage rootBUT){
 		
-		Thread workerBM = new ReloadThread(rootURL,rootBM);
-		Thread workerBUT = new ReloadThread(rootURL,rootBUT);
+		Thread workerBM = new ReloadThread(rootURL,rootBM,driverBM);
+		Thread workerBUT = new ReloadThread(rootURL,rootBUT,driverBUT);
 		workerBM.start();
 		workerBUT.start();
 		

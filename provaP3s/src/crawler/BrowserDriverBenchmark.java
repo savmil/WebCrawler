@@ -29,6 +29,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class BrowserDriverBenchmark implements BrowserDriver {
+	
 	private RemoteWebDriver driver;
 	
 	public BrowserDriverBenchmark()
@@ -36,13 +37,7 @@ public class BrowserDriverBenchmark implements BrowserDriver {
 		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Saverio\\Desktop\\chromedriver.exe");
         driver = new ChromeDriver();
 	}
-	public VisitedPage trigger(Element element) 
-	{	
-        WebElement event = driver.findElementByXPath(element.getXPath()); // dobbiamo fare in modo tale che un element sia un Web element altrimenti non è cliccabile
-        event.click();
-        return null;
-      
-	}
+	
 	@Override
 	public String load(String url) {
 		// TODO Auto-generated method stub
@@ -50,8 +45,7 @@ public class BrowserDriverBenchmark implements BrowserDriver {
 		String HTMLPageSource = driver.getPageSource();
 		String xmls = new String();
 		
-		
-		 try
+		try
 	        {
 	        	StringReader xml = new StringReader(HTMLPageSource);
 	        	SAXBuilder sb = new SAXBuilder();
@@ -89,6 +83,21 @@ public class BrowserDriverBenchmark implements BrowserDriver {
         }*/
 
 		return xmls;
+	}
+
+
+
+	@Override
+	public TriggerResult trigger(Element element) {
+		// TODO Auto-generated method stub
+        
+        
+		WebElement event = driver.findElementByXPath(element.getXPath()); // dobbiamo fare in modo tale che un element sia un Web element altrimenti non è cliccabile
+        event.click();
+        
+        TriggerResult result = new TriggerResult("",false);
+        
+		return result;
 	}
 
 	

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Report {
 	
-	private ArrayList<NavigationStep> steps;
+	private static ArrayList<NavigationStep> steps;
 	
 	public void addStep(NavigationStep step){
 		steps.add(step);
@@ -12,11 +12,11 @@ public class Report {
 	
 	//	pattern singleton
 	// ********************
-	private Report instance;
+	private static Report instance;
 	
 	private Report(){}
 	
-	protected Report getInstance(){
+	protected static Report getInstance(){
 		if (instance==null){
 			steps = new ArrayList<NavigationStep>();
 			instance = new Report();

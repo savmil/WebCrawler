@@ -1,21 +1,19 @@
 package crawler;
 
-import javax.xml.crypto.dsig.XMLObject;
-
 public class ErrorP {
 	
-	private XMLObject error;
+	private String error;
 
 	
-	public ErrorP(XMLObject error) {
+	public ErrorP(String error) {
 		super();
 		this.error = error;
 	}
-	public XMLObject getError() {
+	public String getError() {
 		return error;
 	}
 
-	public void setError(XMLObject error) {
+	public void setError(String error) {
 		this.error = error;
 	}
 	

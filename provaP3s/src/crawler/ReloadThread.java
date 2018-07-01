@@ -1,20 +1,21 @@
 package crawler;
 
-import javax.xml.crypto.dsig.XMLObject;
-
 public class ReloadThread extends Thread{
 	
 	private String url;
 	private RootPage rootP;
+	private BrowserDriver driver;
 	
-	public ReloadThread(String url,RootPage r){
+	
+	public ReloadThread(String url, RootPage rootP, BrowserDriver driver) {
+		super();
 		this.url = url;
-		rootP = r;
+		this.rootP = rootP;
+		this.driver = driver;
 	}
-	
+
 	public void run(){
-		BrowserDriver driverBM = new BrowserDriverBenchmark();
-		XMLObject xmlBM = driverBM.load(url);
+		String xmlBM = driver.load(url);
 		rootP.setXmlDescr(xmlBM);
 		rootP.loadElements();
 	}

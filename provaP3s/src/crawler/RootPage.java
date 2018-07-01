@@ -2,8 +2,6 @@ package crawler;
 
 import java.util.ArrayList;
 
-import javax.xml.crypto.dsig.XMLObject;
-
 public abstract class RootPage extends VisitedPage{
 	
 	private ArrayList<Element> elementList;
@@ -11,7 +9,7 @@ public abstract class RootPage extends VisitedPage{
 	public RootPage(String url) {
 		super(url);
 	}
-	public RootPage(String url, XMLObject xmlDescr) {
+	public RootPage(String url, String xmlDescr) {
 		super(url,xmlDescr);	
 	}
 	

@@ -13,6 +13,9 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.util.List;
 
+import javax.swing.text.html.parser.DocumentParser;
+import javax.xml.crypto.dsig.XMLObject;
+
 import org.jdom2.Document;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
@@ -22,9 +25,10 @@ import org.jdom2.output.XMLOutputter;
 public class myProva {
 	
 	public static void main(String[] args) {
-		
+		/*
 		RemoteWebDriver driver;
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\posti\\Documents\\GitHub\\WebCrawler\\provaP3s\\selenium\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Valerio\\git\\WebCrawler\\provaP3s\\selenium\\chromedriver.exe");
+        //System.setProperty("webdriver.chrome.driver", "C:\\Users\\posti\\Documents\\GitHub\\WebCrawler\\provaP3s\\selenium\\chromedriver.exe");
         //System.setProperty("webdriver.chrome.driver", "C:\\Users\\Saverio\\Desktop\\WebCrawler\\provaP3s\\selenium\\chromedriver.exe");
         driver = new ChromeDriver();
         
@@ -34,47 +38,50 @@ public class myProva {
 	        int rand=(int)(Math.random()*anchorlist.size());
 			WebElement anchorc = anchorlist.get(rand);
 			anchorc.click();
-        }
-        
+        } 
+        */
+		HTMLtoXML();
 	}
 	
-	public void HTMLtoXML(){
+	public static void HTMLtoXML(){
 		
 		RemoteWebDriver driver;
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\posti\\Documents\\GitHub\\WebCrawler\\provaP3s\\selenium\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Valerio\\git\\WebCrawler\\provaP3s\\selenium\\chromedriver.exe");
+		//System.setProperty("webdriver.chrome.driver", "C:\\Users\\posti\\Documents\\GitHub\\WebCrawler\\provaP3s\\selenium\\chromedriver.exe");
         //System.setProperty("webdriver.chrome.driver", "C:\\Users\\Saverio\\Desktop\\WebCrawler\\provaP3s\\selenium\\chromedriver.exe");
         driver = new ChromeDriver();
-        driver.get("http://www.docenti.unina.it");
+        driver.get("http://www.unina.it");
 		String pageSource = driver.getPageSource();
 	       
-        //System.out.println(pageSource);
+        System.out.println(pageSource);
        
-        
+        /*
         //xmlReader.setContentHandler(handler);
         try
         {
         	StringReader xml = new StringReader(pageSource);
         	
-        	        //org.jdom.Document jdomDocument = saxBuilder.build(log);
+        	//org.jdom.Document jdomDocument = saxBuilder.build(log);
         	SAXBuilder sb=new SAXBuilder();
         	Document doc=sb.build(xml);
         	XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
-
+        	
+        	
             FileWriter fwOutXml = new FileWriter("output.xml");
         	BufferedWriter bwOutXml = new BufferedWriter(fwOutXml);
+        	
         	outputter.output(doc, bwOutXml);
         	String xmls=outputter.outputString(doc);
-        	
         	System.out.println(xmls);
         }
-        catch(IOException e)
-        {
+        catch(IOException e){
         	
         }
-        catch(JDOMException e)
-        {
+        catch(JDOMException e){
         	
         }
+        
+        
         /* SAXParserFactory factory=SAXParserFactory.newInstance();
          try
         {
@@ -99,8 +106,13 @@ public class myProva {
         {
         	
         }*/
+        
+        
+        
         driver.close();
         driver.quit();
+        
+        
         /*DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         try {
                DocumentBuilder builder = dbf.newDocumentBuilder();
@@ -128,8 +140,7 @@ public class myProva {
 		    // handle IOException
 		}
 		 */
+        
 	}
-
-	
 
 }

@@ -9,10 +9,10 @@ public class ComputeManager {
 		NavigationStep step = new NavigationStep(element);
 		
 		// recupero parametri
-		String resultBM = surfResult.get(1).getResult();
-		boolean isErrorBM = surfResult.get(1).getIsError();
-		String resultBUT = surfResult.get(2).getResult();
-		boolean isErrorBUT = surfResult.get(2).getIsError();
+		String resultBM = surfResult.get(0).getResult();
+		boolean isErrorBM = surfResult.get(0).getIsError();
+		String resultBUT = surfResult.get(1).getResult();
+		boolean isErrorBUT = surfResult.get(1).getIsError();
 		
 		if(!isErrorBM && !isErrorBUT){
 			VisitedPage PageBM = new VisitedPageBM(element.getXPath(),resultBM);

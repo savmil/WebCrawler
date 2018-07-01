@@ -1,4 +1,5 @@
 package crawler;
+
 public class Element {
 	
 	private String XPath;

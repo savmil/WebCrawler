@@ -2,8 +2,6 @@ package crawler;
 
 import java.util.List;
 
-import org.openqa.selenium.remote.RemoteWebDriver;
-
 public class CrawlerManager 
 {
 
@@ -16,7 +14,7 @@ public class CrawlerManager
 		
 		// in parallelo
 		String xmlBM = driverBM.load(rootURL);
-		RootPage rootBM = new RootPageBM(rootURL,xmlBM,driverBM);
+		RootPage rootBM = new RootPageBM(rootURL,xmlBM);
 		
 		String xmlBUT = driverBUT.load(rootURL);
 		RootPage rootBUT = new RootPageBUT(rootURL,xmlBUT);
@@ -33,26 +31,25 @@ public class CrawlerManager
 		report.addStep(step);
 		
 		ReloadManager reloadManager= new ReloadManager(driverBM, driverBUT);
-		
 		PlanManager planManager = new PlanManager();
-		
 		SurfManager surfManager = new SurfManager(driverBM,driverBUT);
-		
 		ComputeManager computeManager = new ComputeManager();
+		
+		// Crawler Cycle
 		for(int i=0;i<nStep;i++){
 			
 			reloadManager.reload(rootURL,rootBM,rootBUT);
 			
-			
 			Element element = planManager.plan(rootBM);
-			
 			
 			List<TriggerResult> results = surfManager.surf(element);
 
-			
 			computeManager.compute(element, results);
 			
 		}
+		
+		
+		
 	}
 	
 	

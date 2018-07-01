@@ -15,14 +15,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 public abstract class BrowserDriver {
+	
 	private RemoteWebDriver driver;
-	public BrowserDriver(String config, String driver_exe,RemoteWebDriver driver)
-	{
+	
+	public BrowserDriver(String config, String driver_exe,RemoteWebDriver driver){
 		System.setProperty(driver_exe, config);
 		driver=this.driver;
 	}
-	public String load(String url)
-	{
+	
+	public String load(String url){
 		// TODO Auto-generated method stub
 				driver.get(url);
 				String HTMLPageSource = driver.getPageSource();
@@ -67,8 +68,8 @@ public abstract class BrowserDriver {
 
 				return xmls;
 	}
-	public TriggerResult trigger(Element element)
-	{
+	
+	public TriggerResult trigger(Element element){
 		WebElement event = driver.findElementByXPath(element.getXPath()); // dobbiamo fare in modo tale che un element sia un Web element altrimenti non è cliccabile
         event.click();
         
@@ -76,27 +77,26 @@ public abstract class BrowserDriver {
         
 		return result;
 	}
-	public ArrayList<Element> findElements()
-	{
+	
+	public ArrayList<Element> findElements(){
+		
 		List<WebElement> anchors =driver.findElementsByTagName("a");// anchor link
 		List<WebElement> buttons =driver.findElementsByTagName("button");// dovrebbe dare i pulsanti da controllare
 		ArrayList<Element> elements=new ArrayList<Element>();
 		
-		for (int i=0;i<=anchors.size();i++)
-		{
+		for (int i=0;i<=anchors.size();i++){
 			AnchorLink anchor=new AnchorLink();
 			anchor.setValue(anchors.get(i).getAttribute("value"));
 			anchor.setXPath(anchors.get(i).getAttribute("xpath"));
 			elements.add(anchor);
 		}
-		for (int i=0;i<=buttons.size();i++)
-		{
+		
+		for (int i=0;i<=buttons.size();i++){
 			Button button= new Button();
 			button.setValue(anchors.get(i).getAttribute("value"));
 			button.setXPath(anchors.get(i).getAttribute("xpath"));
 			elements.add(button);
 		}
-		
 		
 		return elements;
 	}

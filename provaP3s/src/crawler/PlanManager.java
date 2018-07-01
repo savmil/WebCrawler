@@ -2,7 +2,7 @@ package crawler;
 
 import java.util.List;
 
-public class PlanManager {
+public class PlanManager implements IPlanManager{
 	
 	public Element selectElement(List<Element> elementList){
 		
@@ -15,7 +15,8 @@ public class PlanManager {
 		return randomElements;
 	}
 	
-	
+	//pattern strategy
+	@Override
 	public Element plan (RootPage rootBM){
 		
 		List<Element> pageElements = rootBM.getElements();
@@ -23,5 +24,8 @@ public class PlanManager {
 		
 		return selectedElement;
 	}
+	
+	
+	
 	
 }

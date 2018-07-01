@@ -17,8 +17,7 @@ public class surfManagerThread extends Thread{
 	
 	public void run(){
 		
-		TriggerResult surfresult =driver.trigger(element);
-		
+		TriggerResult surfresult = driver.trigger(element);	
 		synchronized(lis){
 			lis.add(surfresult);
 		}

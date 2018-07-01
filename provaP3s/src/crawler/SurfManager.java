@@ -35,8 +35,6 @@ public class SurfManager
 			t_bm.join();
 			t_but.join();
 		} catch (InterruptedException e) {
-			
-	
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

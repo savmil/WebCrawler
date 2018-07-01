@@ -7,10 +7,8 @@ public class CrawlerManager
 
 	void startTest(String rootURL,int nStep){
 		
-		BrowserAbstractFactory bbm= BrowserAbstractFactory.getFactory("BM");
-		BrowserAbstractFactory but= BrowserAbstractFactory.getFactory("BUT");
-		BrowserDriver driverBM =  bbm.createDriver();
-		BrowserDriver driverBUT = but.createDriver();
+		BrowserDriver driverBM =  new BrowserDriverBenchmark();
+		BrowserDriver driverBUT = new BrowserDriverUnderTest();
 		
 		// in parallelo
 		String xmlBM = driverBM.load(rootURL);

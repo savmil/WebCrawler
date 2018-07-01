@@ -20,6 +20,7 @@ public class PlanManager implements IPlanManager{
 	public Element plan (RootPage rootBM){
 		
 		List<Element> pageElements = rootBM.getElements();
+		System.out.println("list element"+pageElements.size());
 		Element selectedElement=selectElement(pageElements);
 		
 		return selectedElement;

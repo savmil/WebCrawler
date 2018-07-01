@@ -9,7 +9,9 @@ import org.xml.sax.SAXException;
 
 import net.bytebuddy.dynamic.scaffold.MethodGraph.NodeList;
 
+import javax.xml.crypto.dom.DOMStructure;
 import javax.xml.crypto.dsig.XMLObject;
+import javax.xml.crypto.dsig.XMLSignature;
 import javax.xml.crypto.dsig.XMLSignatureFactory;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -45,10 +47,6 @@ public class BrowserDriverBenchmark implements BrowserDriver {
                DocumentBuilder builder = dbf.newDocumentBuilder();
                Document document = builder.parse(HTMLPageSource);//dovrebbe essere una verisione xml del file il problema è salvarlo come oggetto
                
-               
-              
-               XMLObject object = fac.newXMLObject(nl., "object-1", null, null);
-               
         } catch (SAXException sxe) {
                Exception  x = sxe;
                if (sxe.getException() != null)
@@ -61,9 +59,9 @@ public class BrowserDriverBenchmark implements BrowserDriver {
         }
       
        
-        List content = Collections.singletonList(fac.newManifest(references));
+       
         
-        XMLObject xo;
+       
 
 		return ;
 	}

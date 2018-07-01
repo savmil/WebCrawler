@@ -14,5 +14,6 @@
 	<classpathentry kind="lib" path="selenium/libs/httpcore-4.4.6.jar"/>
 	<classpathentry kind="lib" path="selenium/libs/okhttp-3.9.1.jar"/>
 	<classpathentry kind="lib" path="selenium/libs/okio-1.13.0.jar"/>
+	<classpathentry kind="lib" path="jdom/jdom-2.0.6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

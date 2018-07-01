@@ -15,7 +15,7 @@ public class SurfManager
 		element=e;
 	}
 	
-	public void surf(element) 
+	public void surf(Element element) 
 	{
 		try
 		{

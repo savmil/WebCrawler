@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="it" ng-app="app" class="ng-scope">
+  <head>
+    <style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}</style>
+    <base href="/" />
+    <meta charset="utf-8" />
+    <title>Docenti.unina.it</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="google-site-verification" content="-lvsPoDy0a4wTIlYlMkEz8icoDPAho5H_mpICX3cCsw" />
+    <meta name="fragment" content="!" />
+    <link rel="stylesheet" href="styles/vendor-27abd55f.css" />
+    <link rel="stylesheet" href="styles/app-f7298c1e.css" />
+  </head>
+  <body rotate="">
+    <div class="scroll-top-wrapper">
+      <span class="scroll-top-inner">
+        <i class="fa fa-2x fa-arrow-circle-up" />
+      </span>
+    </div>
+    <!--[if lt IE 10]>
+<p class = "browsehappy">You are using an <strong>outdated</strong> browser. Please <a href = "http://browsehappy.com/">upgrade
+ your browser</a> to improve
+ your experience.</p>
+<![endif]-->
+    <!-- ngInclude: undefined -->
+    <ng-include src="'app/components/navbar/navbar.html'" class="ng-scope">
+      <nav class="navbar navbar-default navbar-cusomized ng-scope" ng-controller="NavbarCtrl as navbarCtrl">
+        <div class="header-wrapper">
+          <div>
+            <div class="navbar-header logo">
+              <img ng-src="assets/images/site/logo.png" ui-sref="search.input" class="img-responsive" title="logo unina" alt="logo Federico II" href="#!/search" src="assets/images/site/logo.png" />
+            </div>
+            <div class="logo-text">
+              <h1 style="font-size: 1em; line-height: 1.4em; margin-top: 0px;" class="ng-binding">
+                universita' degli studi di napoli
+                <br />
+                federico ii
+                <br />
+                docenti
+              </h1>
+            </div>
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar" />
+                <span class="icon-bar" />
+                <span class="icon-bar" />
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="row whiteRow">
+          <div>
+            <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                <li>
+                  <a tabindex="0" data-toggle="collapse" aria-label="CERCA" data-target=".navbar-collapse" href="/#/search" translate="navbar.search" class="ng-scope">CERCA</a>
+                </li>
+                <li>
+                  <a aria-label="ACCESSO DOCENTI" data-target=".navbar-collapse" href="/webdocenti/login/login.do" translate="navbar.professorAccess" class="ng-scope">ACCESSO DOCENTI</a>
+                </li>
+                <li>
+                  <a tabindex="0" data-toggle="collapse" aria-label="CONTATTI" data-target=".navbar-collapse" ui-sref="contacts" translate="navbar.contacts" class="ng-scope" href="#!/contacts">CONTATTI</a>
+                </li>
+                <li>
+                  <a tabindex="0" data-toggle="collapse" data-target=".navbar-collapse" ng-click="navbarCtrl.changeLang()" aria-label="ENGLISH" translate="navbar.language" class="ng-scope">ENGLISH</a>
+                </li>
+                <li id="dd" ng-show="navbarCtrl.getUser() != undefined" class="dropdown ng-hide" aria-hidden="true">
+                  <a tabindex="0" id="add" ng-focus="navbarCtrl.focus()" ng-blur="navbarCtrl.blur()" class="dropdown-toggle ng-binding" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" aria-label="  ">
+                    <span class="caret" />
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a tabindex="0" href="#" translate="navbar.logout" ng-click="navbarCtrl.logout()" class="ng-scope">Esci</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </ng-include>
+    <!-- uiView:  -->
+    <div class="container-fluid ng-scope" ui-view="" id="xd-content">
+      <!-- uiView:  -->
+      <div ui-view="" class="ng-scope">
+        <div class="container-fluid home_bkg ng-scope">
+          <div class="row search_input">
+            <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4">
+              <label id="searchInputLabel" for="searchInput" class="ng-binding">Ricerca docente per cognome/nome o insegnamento</label>
+              <form onload="searchController.acf()" ng-submit="searchController.search()" class="ng-pristine ng-valid">
+                <div class="input-group">
+                  <input id="searchInput" aria-labelledby="searchInputLabel" ng-model="searchController.inputSearch" type="text" class="form-control ng-pristine ng-untouched ng-valid" autofocus="" aria-invalid="false" />
+                  <span class="input-group-btn">
+                    <button ng-click="searchController.search()" class="btn btn-default ng-binding" role="button" aria-label="Cerca" type="button">Cerca</button>
+                  </span>
+                </div>
+                <span ng-show="searchController.showAlertMinChars()" class="ng-binding ng-hide" aria-hidden="true">Inserire almeno 3 caratteri</span>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ngInclude: undefined -->
+    <ng-include src="'app/components/footer/footer.html'" class="ng-scope">
+      <footer ng-controller="FooterCtrl" class="ng-scope">
+        <div class="footer-container">
+          <div class="footer-icon-container">
+            <a class="AX_FOCUS_01" tabindex="1" ui-sref="siteMap" href="#!/siteMap" role="link" aria-label="Vai alla mappa del sito">
+              <img ng-src="assets/images/site/icons/map.png" title="Vai alla mappa del sito" alt="sitemap logo" src="assets/images/site/icons/map.png" />
+            </a>
+            <a class="AX_FOCUS_01" tabindex="1" ui-sref="accessibility" href="#!/accessibility" role="link" aria-label="Vai alla pagina dell'accessibilità">
+              <img ng-src="assets/images/site/icons/accessibility.png" title="Vai alla pagina dell'accessibilità" alt="accessibilità logo" src="assets/images/site/icons/accessibility.png" />
+            </a>
+          </div>
+          <p class="paragraph">© Università degli Studi di Napoli Federico II</p>
+        </div>
+        <script type="text/javascript">function myFunction() {
+
+    }</script>
+      </footer>
+    </ng-include>
+    <script async="" src="//www.google-analytics.com/analytics.js" />
+    <script src="scripts/vendor-fbbcf7cb.js" />
+    <script src="scripts/app-da59f74d.js" />
+    <script>$(function () {
+
+    	window.onscroll = function() {myFunction()};
+
+    	function myFunction() {
+    	    if (document.body.scrollTop || document.documentElement.scrollTop &gt; 150) {
+    	    	$('.scroll-top-wrapper').addClass('show');
+
+    	    	$('.scroll-top-wrapper').show();
+    	    } else {
+    	    	$('.scroll-top-wrapper').removeClass('show');
+
+    	    	$('.scroll-top-wrapper').hide();
+    	    }
+    	}
+
+        $('.scroll-top-wrapper').on('click', scrollToTop);
+    });
+
+
+    function scrollToTop() {
+        verticalOffset = typeof(verticalOffset) != 'undefined' ? verticalOffset : 0;
+        element = $('body');
+        offset = element.offset();
+        offsetTop = offset.top;
+        $('html, body').animate({scrollTop: offsetTop}, 500, 'linear');
+    }
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    //
+    ga('create', 'UA-548689-3', 'docenti.unina.it');</script>
+    <div id="ngProgress-container" class="ng-scope">
+      <div id="ngProgress" style="height: 4px; background-color: rgb(126, 195, 255); color: rgb(126, 195, 255); width: 100%; opacity: 1;" />
+    </div>
+  </body>
+</html>

@@ -1,6 +1,9 @@
 package crawler;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +20,10 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
+import org.jdom2.output.Format;
+import org.jdom2.output.XMLOutputter;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -37,12 +44,35 @@ public class BrowserDriverBenchmark implements BrowserDriver {
       
 	}
 	@Override
-	public XMLObject load(String url) {
+	public String load(String url) {
 		// TODO Auto-generated method stub
 		driver.get(url);
 		String HTMLPageSource = driver.getPageSource();
+		String xmls = new String();
 		
-        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+		
+		 try
+	        {
+	        	StringReader xml = new StringReader(HTMLPageSource);
+	        	SAXBuilder sb = new SAXBuilder();
+	        	org.jdom2.Document doc= sb.build(xml);
+	        	XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
+
+	            FileWriter fwOutXml = new FileWriter("output.xml");
+	        	BufferedWriter bwOutXml = new BufferedWriter(fwOutXml);
+	        	outputter.output((org.jdom2.Document) doc, bwOutXml);
+	        	xmls=outputter.outputString(doc);
+	        }
+	        catch(IOException e)
+	        {
+	        	
+	        }
+	        catch(JDOMException e)
+	        {
+	        	
+	        }
+		
+        /*DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         try {
                DocumentBuilder builder = dbf.newDocumentBuilder();
                Document document = builder.parse(HTMLPageSource);//dovrebbe essere una verisione xml del file il problema è salvarlo come oggetto
@@ -56,14 +86,9 @@ public class BrowserDriverBenchmark implements BrowserDriver {
                pce.printStackTrace();
         } catch (IOException ioe) {
                ioe.printStackTrace();
-        }
-      
-       
-       
-        
-       
+        }*/
 
-		return ;
+		return xmls;
 	}
 
 	

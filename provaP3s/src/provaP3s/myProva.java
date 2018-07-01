@@ -2,6 +2,7 @@ package provaP3s;
 
 //import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
@@ -10,22 +11,42 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.List;
 
 import org.jdom2.Document;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
-public class myProva {
 
+public class myProva {
+	
 	public static void main(String[] args) {
+		
 		RemoteWebDriver driver;
-        //System.setProperty("webdriver.chrome.driver", "C:\\Users\\posti\\Documents\\GitHub\\WebCrawler\\provaP3s\\selenium\\chromedriver.exe");
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Saverio\\Desktop\\WebCrawler\\provaP3s\\selenium\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\posti\\Documents\\GitHub\\WebCrawler\\provaP3s\\selenium\\chromedriver.exe");
+        //System.setProperty("webdriver.chrome.driver", "C:\\Users\\Saverio\\Desktop\\WebCrawler\\provaP3s\\selenium\\chromedriver.exe");
+        driver = new ChromeDriver();
+        
+        for(int i=0; i<10; i++){
+	        driver.get("https://www.seleniumhq.org/docs/");
+	        List<WebElement> anchorlist = driver.findElementsByTagName("a");
+	        int rand=(int)(Math.random()*anchorlist.size());
+			WebElement anchorc = anchorlist.get(rand);
+			anchorc.click();
+        }
+        
+	}
+	
+	public void HTMLtoXML(){
+		
+		RemoteWebDriver driver;
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\posti\\Documents\\GitHub\\WebCrawler\\provaP3s\\selenium\\chromedriver.exe");
+        //System.setProperty("webdriver.chrome.driver", "C:\\Users\\Saverio\\Desktop\\WebCrawler\\provaP3s\\selenium\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.get("http://www.docenti.unina.it");
-        String pageSource = driver.getPageSource();
-       
+		String pageSource = driver.getPageSource();
+	       
         //System.out.println(pageSource);
        
         
@@ -33,7 +54,6 @@ public class myProva {
         try
         {
         	StringReader xml = new StringReader(pageSource);
-        	
         	
         	        //org.jdom.Document jdomDocument = saxBuilder.build(log);
         	SAXBuilder sb=new SAXBuilder();
@@ -109,5 +129,7 @@ public class myProva {
 		}
 		 */
 	}
+
+	
 
 }

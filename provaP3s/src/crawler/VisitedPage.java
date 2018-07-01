@@ -1,16 +1,14 @@
 package crawler;
 
-import javax.xml.crypto.dsig.XMLObject;
-
 public abstract class VisitedPage {
 	private String url;
-	private XMLObject xmlDescr;
+	private String xmlDescr;
 	
 	public VisitedPage(String url) {
 		super();
 		this.url = url;
 	}
-	public VisitedPage(String url, XMLObject xmlDescr) {
+	public VisitedPage(String url, String xmlDescr) {
 		super();
 		this.url = url;
 		this.xmlDescr = xmlDescr;
@@ -21,10 +19,10 @@ public abstract class VisitedPage {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	public XMLObject getXmlDescr() {
+	public String getXmlDescr() {
 		return xmlDescr;
 	}
-	public void setXmlDescr(XMLObject xmlDescr) {
+	public void setXmlDescr(String xmlDescr) {
 		this.xmlDescr = xmlDescr;
 	}
 	

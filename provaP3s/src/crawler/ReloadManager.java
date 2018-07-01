@@ -25,19 +25,6 @@ public class ReloadManager {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		/*
-		driverBM = new BrowserDriverBenchmark();
-		XMLObject xmlBM = driverBM.load(rootURL);
-		rootBM.setXmlDescr(xmlBM);
-		rootBM.loadElements();
-	
-		//Par ---
 		
-		driverBUT = new BrowserDriverUnderTest();
-		XMLObject xmlBUT = driverBUT.load(rootURL);
-		rootBUT.setXmlDescr(xmlBM);
-		rootBUT.loadElements();
-		*/
 	}
 }

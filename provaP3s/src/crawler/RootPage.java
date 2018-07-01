@@ -21,7 +21,7 @@ public abstract class RootPage extends VisitedPage{
 	}
 	
 	public void loadElements(){
-		
+
 	}
 }
 	

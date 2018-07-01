@@ -25,48 +25,26 @@ public abstract class BrowserDriver {
 	
 	public String load(String url){
 		// TODO Auto-generated method stub
-				driver.get(url);
-				String HTMLPageSource = driver.getPageSource();
-				String xmls = new String();
+		driver.get(url);
+		String HTMLPageSource = driver.getPageSource();
+		String xmls = new String();
 				
-				try
-			        {
-			        	StringReader xml = new StringReader(HTMLPageSource);
-			        	SAXBuilder sb = new SAXBuilder();
-			        	org.jdom2.Document doc= sb.build(xml);
-			        	XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
-
-			            FileWriter fwOutXml = new FileWriter("output.xml");
-			        	BufferedWriter bwOutXml = new BufferedWriter(fwOutXml);
-			        	outputter.output((org.jdom2.Document) doc, bwOutXml);
-			        	xmls=outputter.outputString(doc);
-			        }
-			        catch(IOException e)
-			        {
+		try{
+			StringReader xml = new StringReader(HTMLPageSource);
+			SAXBuilder sb = new SAXBuilder();
+			org.jdom2.Document doc= sb.build(xml);
+			XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
+	        FileWriter fwOutXml = new FileWriter("output.xml");
+			BufferedWriter bwOutXml = new BufferedWriter(fwOutXml);
+			outputter.output((org.jdom2.Document) doc, bwOutXml);
+			xmls=outputter.outputString(doc);
+		}catch(IOException e){
 			        	
-			        }
-			        catch(JDOMException e)
-			        {
+		}catch(JDOMException e){
 			        	
-			        }
-				
-		        /*DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-		        try {
-		               DocumentBuilder builder = dbf.newDocumentBuilder();
-		               Document document = builder.parse(HTMLPageSource);//dovrebbe essere una verisione xml del file il problema è salvarlo come oggetto
-		               
-		        } catch (SAXException sxe) {
-		               Exception  x = sxe;
-		               if (sxe.getException() != null)
-		                      x = sxe.getException();
-		               x.printStackTrace();
-		        } catch (ParserConfigurationException pce) {
-		               pce.printStackTrace();
-		        } catch (IOException ioe) {
-		               ioe.printStackTrace();
-		        }*/
+		}
 
-				return xmls;
+		return xmls;
 	}
 	
 	public TriggerResult trigger(Element element){
@@ -77,7 +55,7 @@ public abstract class BrowserDriver {
         
 		return result;
 	}
-	
+	/*
 	public ArrayList<Element> findElements(){
 		
 		List<WebElement> anchors =driver.findElementsByTagName("a");// anchor link
@@ -99,5 +77,5 @@ public abstract class BrowserDriver {
 		}
 		
 		return elements;
-	}
+	}*/
 }

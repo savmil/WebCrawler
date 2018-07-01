@@ -28,17 +28,17 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-public class BrowserDriverBenchmark implements BrowserDriver {
+public class BrowserDriverBenchmark extends BrowserDriver {
 	
-	private RemoteWebDriver driver;
+	//private RemoteWebDriver driver;
 	
 	public BrowserDriverBenchmark()
 	{
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Saverio\\Desktop\\chromedriver.exe");
-        driver = new ChromeDriver();
+		super("webdriver.chrome.driver", "C:\\Users\\Saverio\\Desktop\\chromedriver.exe",(RemoteWebDriver)new ChromeDriver());
+		//driver = new ChromeDriver();	
 	}
 	
-	@Override
+	/*@Override
 	public String load(String url) {
 		// TODO Auto-generated method stub
 		driver.get(url);
@@ -64,7 +64,7 @@ public class BrowserDriverBenchmark implements BrowserDriver {
 	        catch(JDOMException e)
 	        {
 	        	
-	        }
+	        }*/
 		
         /*DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         try {
@@ -82,7 +82,7 @@ public class BrowserDriverBenchmark implements BrowserDriver {
                ioe.printStackTrace();
         }*/
 
-		return xmls;
+		/*return xmls;
 	}
 
 
@@ -98,9 +98,5 @@ public class BrowserDriverBenchmark implements BrowserDriver {
         TriggerResult result = new TriggerResult("",false);
         
 		return result;
-	}
-
-	
-
-
+	}*/
 }

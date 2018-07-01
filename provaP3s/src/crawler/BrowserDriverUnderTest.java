@@ -9,15 +9,15 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-public class BrowserDriverUnderTest implements BrowserDriver{
-	private RemoteWebDriver driverf;
+public class BrowserDriverUnderTest extends BrowserDriver{
+	//private RemoteWebDriver driverf;
 	
 	public BrowserDriverUnderTest(){
-		 System.setProperty("webdriver.gecko.driver", "C:\\Users\\Saverio\\Desktop\\geckodriver.exe");
-		 driverf = new FirefoxDriver();
+		super("webdriver.gecko.driver", "C:\\Users\\Saverio\\Desktop\\geckodriver.exe",(RemoteWebDriver)new FirefoxDriver());
+		//System.setProperty("webdriver.gecko.driver", "C:\\Users\\Saverio\\Desktop\\geckodriver.exe");
+		 //driverf = new FirefoxDriver();
 	}
-
-	@Override
+	/*@Override
 	public String load(String url) {
 		// TODO Auto-generated method stub
 		driverf.get(url);
@@ -30,7 +30,7 @@ public class BrowserDriverUnderTest implements BrowserDriver{
         WebElement trig=Element; // dobbiamo fare in modo tale che un element sia un Web element altrimenti non è cliccabile
         trig.click();
 		return null;
-	}
+	}*/
 
 
 

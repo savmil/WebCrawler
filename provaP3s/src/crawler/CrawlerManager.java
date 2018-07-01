@@ -2,17 +2,21 @@ package crawler;
 
 import java.util.List;
 
+import org.openqa.selenium.remote.RemoteWebDriver;
+
 public class CrawlerManager 
 {
 
 	void startTest(String rootURL,int nStep){
 		
-		BrowserDriver driverBM = new BrowserDriverBenchmark();
-		BrowserDriver driverBUT = new BrowserDriverUnderTest();
+		BrowserAbstractFactory bbm= BrowserAbstractFactory.getFactory("BM");
+		BrowserAbstractFactory but= BrowserAbstractFactory.getFactory("BUT");
+		BrowserDriver driverBM =  bbm.createDriver();
+		BrowserDriver driverBUT = but.createDriver();
 		
 		// in parallelo
 		String xmlBM = driverBM.load(rootURL);
-		RootPage rootBM = new RootPageBM(rootURL,xmlBM);
+		RootPage rootBM = new RootPageBM(rootURL,xmlBM,driverBM);
 		
 		String xmlBUT = driverBUT.load(rootURL);
 		RootPage rootBUT = new RootPageBUT(rootURL,xmlBUT);
@@ -28,17 +32,24 @@ public class CrawlerManager
 		Report report = Report.getInstance();
 		report.addStep(step);
 		
+		ReloadManager reloadManager= new ReloadManager(driverBM, driverBUT);
+		
+		PlanManager planManager = new PlanManager();
+		
+		SurfManager surfManager = new SurfManager(driverBM,driverBUT);
+		
+		ComputeManager computeManager = new ComputeManager();
 		for(int i=0;i<nStep;i++){
-			ReloadManager reloadManager= new ReloadManager(driverBM, driverBUT);
+			
 			reloadManager.reload(rootURL,rootBM,rootBUT);
 			
-			PlanManager planManager = new PlanManager();
+			
 			Element element = planManager.plan(rootBM);
 			
-			SurfManager surfManager = new SurfManager(driverBM,driverBUT);
+			
 			List<TriggerResult> results = surfManager.surf(element);
 
-			ComputeManager computeManager = new ComputeManager();
+			
 			computeManager.compute(element, results);
 			
 		}

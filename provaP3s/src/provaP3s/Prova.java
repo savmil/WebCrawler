@@ -49,7 +49,7 @@ public class Prova
         List<WebElement> anchorlistf=null;
         WebDriverWait wait1 = new WebDriverWait(driver,30);
         WebDriverWait wait2 = new WebDriverWait(driverf,30);
-        XMLReader r = new MySAXDriver();
+/*        XMLReader r = new MySAXDriver();
 
         // try to activate validation
 try {
@@ -60,16 +60,16 @@ System.err.println("Cannot activate validation.");
 
         // register event handlers
 r.setContentHandler(new MyContentHandler());
-r.setErrorHandler(new MyErrorHandler());
+r.setErrorHandler(new MyErrorHandler());*/
 
         // parse the first document
-try {
+/*try {
 r.parse("http://www.foo.com/mydoc.xml");
 } catch (IOException e) {
 System.err.println("I/O exception reading XML document");
 } catch (SAXException e) {
 System.err.println("XML exception reading document.");
-}
+}*/
         // namespaces - DocumentBuilderFactory is *not* namespace aware by default
        System.out.println(driver.getPageSource());
       

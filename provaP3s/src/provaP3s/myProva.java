@@ -25,22 +25,38 @@ import org.jdom2.output.XMLOutputter;
 public class myProva {
 	
 	public static void main(String[] args) {
-		/*
+		
 		RemoteWebDriver driver;
 		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Valerio\\git\\WebCrawler\\provaP3s\\selenium\\chromedriver.exe");
         //System.setProperty("webdriver.chrome.driver", "C:\\Users\\posti\\Documents\\GitHub\\WebCrawler\\provaP3s\\selenium\\chromedriver.exe");
         //System.setProperty("webdriver.chrome.driver", "C:\\Users\\Saverio\\Desktop\\WebCrawler\\provaP3s\\selenium\\chromedriver.exe");
-        driver = new ChromeDriver();
         
+		driver = new ChromeDriver();
+		driver.get("https://www.docenti.unina.it");
+		
+		String pageSource1 = driver.getPageSource();
+		System.out.println(pageSource1);
+		
+		
+        List<WebElement> anchorlist = driver.findElementsByTagName("button");
+        int rand=2;//(int)(Math.random()*anchorlist.size());
+		WebElement anchorc = anchorlist.get(rand);
+		anchorc.click();
+		
+		String pageSource2 = driver.getPageSource();
+		System.out.println(pageSource2);
+		//System.out.println(pageSource);
+		
+		/*
         for(int i=0; i<10; i++){
 	        driver.get("https://www.seleniumhq.org/docs/");
 	        List<WebElement> anchorlist = driver.findElementsByTagName("a");
 	        int rand=(int)(Math.random()*anchorlist.size());
 			WebElement anchorc = anchorlist.get(rand);
 			anchorc.click();
-        } 
-        */
-		HTMLtoXML();
+        } */
+        
+		//HTMLtoXML();
 	}
 	
 	public static void HTMLtoXML(){

@@ -15,7 +15,7 @@ public class DeltaSimple extends IDelta{
 	@Override
 	public void computeDelta(VisitedPage p1, VisitedPage p2) {
 		// TODO Auto-generated method stub
-		double delta = p1.getXmlDescr().toString().compareTo(p2.getXmlDescr().toString());
+		double delta = p1.getXmlDescr().compareTo(p2.getXmlDescr());
 		this.setDelta(delta);
 		
 	}

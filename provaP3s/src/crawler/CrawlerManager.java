@@ -10,14 +10,29 @@ public class CrawlerManager
 		BrowserDriver driverBM =  new BrowserDriverBenchmark();
 		BrowserDriver driverBUT = new BrowserDriverUnderTest();
 		
-		// in parallelo
+		/* Codice sequenziale
 		String xmlBM = driverBM.load(rootURL);
 		RootPage rootBM = new RootPageBM(rootURL,xmlBM);
 		
 		String xmlBUT = driverBUT.load(rootURL);
 		RootPage rootBUT = new RootPageBUT(rootURL,xmlBUT);
+		*/
 		
-		//join e recupero dei risultati del thread
+		RootPage rootBM = new RootPageBM(rootURL);
+		RootPage rootBUT = new RootPageBUT(rootURL);
+		
+		Thread workerBM = new LoadThread(rootBM,driverBM);
+		Thread workerBUT = new LoadThread(rootBUT,driverBUT);
+		
+		workerBM.start();
+		workerBUT.start();
+		
+		try {
+			workerBM.join();
+			workerBUT.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		
 		IDelta delta = new DeltaSimple(rootBM, rootBUT);
 		delta.computeDelta(rootBM, rootBUT);

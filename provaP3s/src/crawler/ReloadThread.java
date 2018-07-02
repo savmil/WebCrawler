@@ -2,20 +2,18 @@ package crawler;
 
 public class ReloadThread extends Thread{
 	
-	private String url;
 	private RootPage rootP;
 	private BrowserDriver driver;
 	
 	
-	public ReloadThread(String url, RootPage rootP, BrowserDriver driver) {
+	public ReloadThread(RootPage rootP, BrowserDriver driver) {
 		super();
-		this.url = url;
 		this.rootP = rootP;
 		this.driver = driver;
 	}
 
 	public void run(){
-		String xmlBM = driver.load(url);
+		String xmlBM = driver.load(rootP.getUrl());
 		rootP.setXmlDescr(xmlBM);
 		rootP.loadElements();
 	}

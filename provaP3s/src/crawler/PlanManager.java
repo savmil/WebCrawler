@@ -4,7 +4,7 @@ import java.util.List;
 
 public class PlanManager implements IPlanManager{
 	
-	public Element selectElement(List<Element> elementList){
+	private Element selectElement(List<Element> elementList){
 		
 		Element randomElements = new Element();
 		if (elementList.size()!=0){

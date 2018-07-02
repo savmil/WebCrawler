@@ -18,5 +18,6 @@ public class ReloadThread extends Thread{
 		String xmlBM = driver.load(url);
 		rootP.setXmlDescr(xmlBM);
 		rootP.loadElements();
+		System.out.println("sono qui");
 	}
 }

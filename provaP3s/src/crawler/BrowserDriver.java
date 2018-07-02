@@ -47,7 +47,7 @@ public abstract class BrowserDriver {
 			        	SAXBuilder sb = new SAXBuilder();
 			        	org.jdom2.Document doc= sb.build(xml);
 			        	XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
-
+			        	
 			            FileWriter fwOutXml = new FileWriter("output.xml");
 			        	BufferedWriter bwOutXml = new BufferedWriter(fwOutXml);
 			        	outputter.output((org.jdom2.Document) doc, bwOutXml);

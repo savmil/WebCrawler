@@ -49,6 +49,7 @@ public class CrawlerManager
 		System.out.println("[CrawlerManager]: Aggiunto il passo iniziale al report");
 		
 		ReloadManager reloadManager= new ReloadManager(driverBM, driverBUT);
+		//IPlanManager planManager = new PlanManager();
 		PlanManager planManager = new PlanManager();
 		SurfManager surfManager = new SurfManager(driverBM,driverBUT);
 		ComputeManager computeManager = new ComputeManager();

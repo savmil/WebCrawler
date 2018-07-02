@@ -4,7 +4,7 @@ public class Test implements UIUser {
 
 	@Override
 	public void startTest(String rootURL, int nStep) {
-		CrawlerManager crawler=new CrawlerManager();
+		CrawlerManager crawler=CrawlerManager.getInstance();
 		crawler.startTest(rootURL, nStep);
 
 	}

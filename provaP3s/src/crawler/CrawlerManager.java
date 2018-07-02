@@ -4,7 +4,18 @@ import java.util.List;
 
 public class CrawlerManager 
 {
-
+	/***singleton***/
+	private static CrawlerManager instance;
+	
+	private CrawlerManager(){}
+	
+	public static CrawlerManager getInstance(){
+		if (instance==null){
+			instance=new CrawlerManager();
+		}
+		return instance; 
+	}
+	/****/
 	void startTest(String rootURL,int nStep){
 		
 		BrowserDriver driverBM =  new BrowserDriverChrome();

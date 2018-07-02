@@ -34,7 +34,8 @@ public class BrowserDriverBenchmark extends BrowserDriver {
 	
 	public BrowserDriverBenchmark()
 	{
-		super("webdriver.chrome.driver", "C:\\Users\\Saverio\\Desktop\\WebCrawler\\provaP3s\\selenium\\chromedriver.exe");
+		super("webdriver.chrome.driver", "C:\\Users\\posti\\Documents\\GitHub\\WebCrawler\\provaP3s\\selenium\\chromedriver.exe");
+		//super("webdriver.chrome.driver", "C:\\Users\\Saverio\\Desktop\\WebCrawler\\provaP3s\\selenium\\chromedriver.exe");
 		//driver = new ChromeDriver();	
 	}
 	

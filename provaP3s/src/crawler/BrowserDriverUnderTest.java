@@ -13,7 +13,8 @@ public class BrowserDriverUnderTest extends BrowserDriver{
 	//private RemoteWebDriver driverf;
 	
 	public BrowserDriverUnderTest(){
-		super("webdriver.gecko.driver", "C:\\Users\\Saverio\\Desktop\\WebCrawler\\provaP3s\\selenium\\geckodriver.exe");
+		super("webdriver.chrome.driver", "C:\\Users\\posti\\Documents\\GitHub\\WebCrawler\\provaP3s\\selenium\\geckodriver.exe");
+		//super("webdriver.gecko.driver", "C:\\Users\\Saverio\\Desktop\\WebCrawler\\provaP3s\\selenium\\geckodriver.exe");
 		//System.setProperty("webdriver.gecko.driver", "C:\\Users\\Saverio\\Desktop\\geckodriver.exe");
 		 //driverf = new FirefoxDriver();
 	}

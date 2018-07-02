@@ -30,6 +30,7 @@ public abstract class RootPage extends VisitedPage{
 	
 	public RootPage(String url) {
 		super(url);
+		elementList=new ArrayList<Element>();
 	}
 	public RootPage(String url, String xmlDescr) {
 		super(url,xmlDescr);
@@ -49,11 +50,12 @@ public abstract class RootPage extends VisitedPage{
 			//DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			//DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			//System.out.println(super.getXmlDescr());
+			
 			try
 	        {
 				//System.out.print(super.getXmlDescr());
 				String xml=super.getXmlDescr().replace("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n" +"<!DOCTYPE html>", "");			
-				//System.out.print(xml);
+				//System.out.print(super.getXmlDescr());
 	        	StringReader doc = new StringReader(xml);
 	        	SAXBuilder sb = new SAXBuilder();
 	        	org.jdom2.Document document= sb.build(doc);
@@ -63,17 +65,24 @@ public abstract class RootPage extends VisitedPage{
 	        		Element anchor=new AnchorLink();
 	        		anchor.setValue(c.getAttributeValue("value"));
 	        		String xPath="";
-	        		//System.out.println(c.toString());
+	        		xPath=xPath+"html";
+	        		ArrayList<String> lists=new ArrayList<String>();
 	        		while (!c.toString().equals(root.toString()))
 	        		{
 	        			String appoggio=c.toString();
-	        			appoggio.replace("[Element:", "");
-	        			System.out.println(appoggio);
-	        			xPath=xPath+c.toString();
+	        			appoggio=appoggio.replace("[Element: <", "");
+	        			String[] app=appoggio.split(" ");
+	        			//System.out.println(app[0]);
+	        			lists.add(app[0]);
 	        			c=(org.jdom2.Element) c.getParent();
-	        			
 	        		}
-	        		xPath=xPath+root.toString();
+	        		for (int i=lists.size()-1;i>=0;i--)
+	        		{
+	        			xPath=xPath+"/"+lists.get(i);
+	        		}
+	        		
+	        		//System.out.println(xPath);
+	        		
 	        		anchor.setXPath(xPath);
 	        		elementList.add(anchor);
 	        	}
@@ -82,15 +91,26 @@ public abstract class RootPage extends VisitedPage{
 	        		Element button=new Button();
 	        		button.setValue(c.getAttributeValue("value"));
 	        		String xPath="";
-	        		//System.out.println(c.toString());
+	        		xPath=xPath+"html";
+	        		ArrayList<String> lists=new ArrayList<String>();
 	        		while (!c.toString().equals(root.toString()))
 	        		{
-	        			xPath=xPath+c.toString();
+	        			String appoggio=c.toString();
+	        			appoggio=appoggio.replace("[Element: <", "");
+	        			String[] app=appoggio.split(" ");
+	        			//System.out.println(app[0]);
+	        			lists.add(app[0]);
 	        			c=(org.jdom2.Element) c.getParent();
-	        			
 	        		}
-	        		xPath=xPath+root.toString();
+	        		for (int i=lists.size()-1;i>=0;i--)
+	        		{
+	        			xPath=xPath+"/"+lists.get(i);
+	        		}
+	        		
+	        		//System.out.println(xPath);
+	        		
 	        		button.setXPath(xPath);
+	        		
 	        		elementList.add(button);
 	        	}
 	        	//System.out.println(document.getRootElement().getChild("a").getText());

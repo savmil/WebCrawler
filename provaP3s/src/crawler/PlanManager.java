@@ -22,7 +22,7 @@ public class PlanManager implements IPlanManager{
 		List<Element> pageElements = rootBM.getElements();
 		System.out.println("list element"+pageElements.size());
 		Element selectedElement=selectElement(pageElements);
-		
+		System.out.println(selectedElement.getXPath());
 		return selectedElement;
 	}
 	

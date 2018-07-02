@@ -18,6 +18,7 @@ public class surfManagerThread extends Thread{
 	public void run(){
 		
 		TriggerResult surfresult = driver.trigger(element);	
+		System.out.println(element.getXPath());
 		synchronized(lis){
 			lis.add(surfresult);
 		}

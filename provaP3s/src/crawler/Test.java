@@ -18,7 +18,7 @@ public class Test implements IUser {
 	{
 		
 		Test test=new Test();
-		test.startTest("http:\\www.docenti.unina.it", 1);
+		test.startTest("http://www.repubblica.it", 2);
 	}
 
 }

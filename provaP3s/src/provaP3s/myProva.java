@@ -71,7 +71,7 @@ public class myProva {
 	       
         System.out.println(pageSource);
        
-        /*
+        
         //xmlReader.setContentHandler(handler);
         try
         {

@@ -13,6 +13,7 @@ public class ReloadManager {
 	
 	void reload(String rootURL,RootPage rootBM,RootPage rootBUT){
 		
+		
 		Thread workerBM = new ReloadThread(rootURL,rootBM,driverBM);
 		Thread workerBUT = new ReloadThread(rootURL,rootBUT,driverBUT);
 		workerBM.start();

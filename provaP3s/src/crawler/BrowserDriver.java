@@ -7,6 +7,8 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jdom2.Attribute;
+import org.jdom2.Document;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
@@ -15,6 +17,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.xml.sax.InputSource;
 
 public abstract class BrowserDriver {
 	private RemoteWebDriver driver;
@@ -38,14 +41,21 @@ public abstract class BrowserDriver {
 	{
 		// TODO Auto-generated method stub
 				driver.get(url);
+				String currentUrl=driver.getCurrentUrl();
+				System.out.println(currentUrl);
+				System.out.println(url);
 				String HTMLPageSource = driver.getPageSource();
 				String xmls = new String();
 				
 				try
 			        {
+						
 			        	StringReader xml = new StringReader(HTMLPageSource);
+			        	
 			        	SAXBuilder sb = new SAXBuilder();
+			        
 			        	org.jdom2.Document doc= sb.build(xml);
+			        
 			        	XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
 			        	
 			            FileWriter fwOutXml = new FileWriter("output.xml");
@@ -86,11 +96,12 @@ public abstract class BrowserDriver {
 		
 		try{
 			WebElement event = driver.findElementByXPath(element.getXPath()); // dobbiamo fare in modo tale che un element sia un Web element altrimenti non è cliccabile
+			System.out.println(element.getXPath());
 			event.click();
 			result = driver.getPageSource();
 			
 		}catch(Throwable e){
-			String stackTrace = e.toString();
+			String stackTrace = e.getStackTrace().toString();
 			result = html2xml(stackTrace);
 			isError = true;
 		}
@@ -99,23 +110,32 @@ public abstract class BrowserDriver {
 		return tResult;
 	}
 	
-	private String html2xml(String HTMLPageSource){
-		String xmlPage = new String();
+	private String html2xml(String HTMLPageSource)
+	{
+		String xmlPage=new String();
+		org.jdom2.Element error = new org.jdom2.Element("error");
+		Document doc = new Document(error);
+		org.jdom2.Element stack = new org.jdom2.Element("stack");
+		XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
+		stack.setAttribute(new Attribute("string", HTMLPageSource));
+		xmlPage = outputter.outputString(doc);
+		
+		/*String xmlPage = new String();
 		try{
 			StringReader xml = new StringReader(HTMLPageSource);
 			SAXBuilder sb = new SAXBuilder();
-			org.jdom2.Document doc = sb.build(xml);
+			org.jdom2.Document doc = sb.build(new InputSource(xml));
 			XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
 			xmlPage = outputter.outputString(doc);
 		}catch(IOException e){
 			e.printStackTrace();    	
 		}catch(JDOMException e){
 			e.printStackTrace();
-		}
+		}*/
 		return xmlPage;
 	}
 
-	public ArrayList<Element> findElements()
+	/*public ArrayList<Element> findElements()
 	{
 		List<WebElement> anchors =driver.findElementsByTagName("a");// anchor link
 		List<WebElement> buttons =driver.findElementsByTagName("button");// dovrebbe dare i pulsanti da controllare
@@ -138,5 +158,5 @@ public abstract class BrowserDriver {
 		
 		
 		return elements;
-	}
+	}*/
 }

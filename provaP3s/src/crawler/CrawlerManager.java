@@ -22,8 +22,8 @@ public class CrawlerManager
 		RootPage rootBM = new RootPageBM(rootURL);
 		RootPage rootBUT = new RootPageBUT(rootURL);
 		
-		Thread workerBM = new LoadThread(rootBM,driverBM);
-		Thread workerBUT = new LoadThread(rootBUT,driverBUT);
+		Thread workerBM = new ReloadThread(rootBM,driverBM);
+		Thread workerBUT = new ReloadThread(rootBUT,driverBUT);
 		
 		workerBM.start();
 		workerBUT.start();

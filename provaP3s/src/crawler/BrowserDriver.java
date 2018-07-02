@@ -25,25 +25,8 @@ public abstract class BrowserDriver {
 		// TODO Auto-generated method stub
 		driver.get(url);
 		String HTMLPageSource = driver.getPageSource();
-		String xmls = new String();
-			
-		try{
-			StringReader xml = new StringReader(HTMLPageSource);
-			SAXBuilder sb = new SAXBuilder();
-        	org.jdom2.Document doc= sb.build(xml);
-        	XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
-			        	/*
-			            FileWriter fwOutXml = new FileWriter("output.xml");
-			        	BufferedWriter bwOutXml = new BufferedWriter(fwOutXml);
-			        	outputter.output((org.jdom2.Document) doc, bwOutXml);
-			        	*/
-			xmls=outputter.outputString(doc);
-		}catch(IOException e){
-			e.printStackTrace();        	
-		}catch(JDOMException e){
-			e.printStackTrace();     	
-		}
-
+		String xmls = html2xml(HTMLPageSource);
+		
 		return xmls;
 	}
 	public TriggerResult trigger(Element element){
@@ -56,8 +39,9 @@ public abstract class BrowserDriver {
 			result = driver.getPageSource();
 			System.out.println("[BrowserDriver][trigger]: evento scatenato con successo.");
 		}catch(Throwable e){
-			String stackTrace = e.getStackTrace().toString();
-			result = html2xml(stackTrace);
+			String stackTrace = e.toString();
+			System.out.println(e);
+			result = string2xml(stackTrace);
 			isError = true;
 			System.out.println("[BrowserDriver][trigger]: la stimolazione ha generato un'eccezione.");
 		}
@@ -65,16 +49,34 @@ public abstract class BrowserDriver {
         TriggerResult tResult = new TriggerResult(result,isError);
 		return tResult;
 	}
-	
-	private String html2xml(String HTMLPageSource){
-		String xmlPage=new String();
+	private String html2xml(String HTMLPageSource)
+	{
+		org.jdom2.Document doc=new Document();	
+		try{
+			StringReader xml = new StringReader(HTMLPageSource);
+			SAXBuilder sb = new SAXBuilder();
+        	doc= sb.build(xml);
+        	
+			        	/*
+			            FileWriter fwOutXml = new FileWriter("output.xml");
+			        	BufferedWriter bwOutXml = new BufferedWriter(fwOutXml);
+			        	outputter.output((org.jdom2.Document) doc, bwOutXml);
+			        	*/
+			
+		}catch(IOException e){
+			e.printStackTrace();        	
+		}catch(JDOMException e){
+			e.printStackTrace();     	
+		}
+		XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
+		return outputter.outputString(doc);
+	}
+	private String string2xml(String HTMLPageSource){
 		org.jdom2.Element error = new org.jdom2.Element("error");
 		Document doc = new Document(error);
 		org.jdom2.Element stack = new org.jdom2.Element("stack");
 		XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
 		stack.setAttribute(new Attribute("string", HTMLPageSource));
-		xmlPage = outputter.outputString(doc);
-		
 		/*String xmlPage = new String();
 		try{
 			StringReader xml = new StringReader(HTMLPageSource);
@@ -87,7 +89,7 @@ public abstract class BrowserDriver {
 		}catch(JDOMException e){
 			e.printStackTrace();
 		}*/
-		return xmlPage;
+		return outputter.outputString(doc);
 	}
 
 }

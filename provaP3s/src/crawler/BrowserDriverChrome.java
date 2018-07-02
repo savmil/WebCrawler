@@ -6,9 +6,9 @@ public class BrowserDriverChrome extends BrowserDriver {
 	
 	public BrowserDriverChrome()
 	{
-		super("webdriver.chrome.driver","C:\\Users\\Valerio\\git\\WebCrawler\\provaP3s\\selenium\\chromedriver.exe");
+		//super("webdriver.chrome.driver","C:\\Users\\Valerio\\git\\WebCrawler\\provaP3s\\selenium\\chromedriver.exe");
 		//super("webdriver.chrome.driver", "C:\\Users\\posti\\Documents\\GitHub\\WebCrawler\\provaP3s\\selenium\\chromedriver.exe");
-		//super("webdriver.chrome.driver", "C:\\Users\\Saverio\\Desktop\\WebCrawler\\provaP3s\\selenium\\chromedriver.exe");
+		super("webdriver.chrome.driver", "C:\\Users\\Saverio\\Desktop\\WebCrawler\\provaP3s\\selenium\\chromedriver.exe");
 		this.driver = new ChromeDriver();
 	}
 }

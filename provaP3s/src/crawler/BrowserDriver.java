@@ -80,15 +80,41 @@ public abstract class BrowserDriver {
 
 				return xmls;
 	}
-	public TriggerResult trigger(Element element)
-	{
-		WebElement event = driver.findElementByXPath(element.getXPath()); // dobbiamo fare in modo tale che un element sia un Web element altrimenti non è cliccabile
-        event.click();
-        
-        TriggerResult result = new TriggerResult("",false);
-        
-		return result;
+	public TriggerResult trigger(Element element){
+		String result = null;
+		boolean isError = false;
+		
+		try{
+			WebElement event = driver.findElementByXPath(element.getXPath()); // dobbiamo fare in modo tale che un element sia un Web element altrimenti non è cliccabile
+			event.click();
+			result = driver.getPageSource();
+			
+		}catch(Throwable e){
+			String stackTrace = e.toString();
+			result = html2xml(stackTrace);
+			isError = true;
+		}
+		
+        TriggerResult tResult = new TriggerResult(result,isError);
+		return tResult;
 	}
+	
+	private String html2xml(String HTMLPageSource){
+		String xmlPage = new String();
+		try{
+			StringReader xml = new StringReader(HTMLPageSource);
+			SAXBuilder sb = new SAXBuilder();
+			org.jdom2.Document doc = sb.build(xml);
+			XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
+			xmlPage = outputter.outputString(doc);
+		}catch(IOException e){
+			e.printStackTrace();    	
+		}catch(JDOMException e){
+			e.printStackTrace();
+		}
+		return xmlPage;
+	}
+
 	public ArrayList<Element> findElements()
 	{
 		List<WebElement> anchors =driver.findElementsByTagName("a");// anchor link

@@ -66,6 +66,9 @@ public abstract class RootPage extends VisitedPage{
 	        		//System.out.println(c.toString());
 	        		while (!c.toString().equals(root.toString()))
 	        		{
+	        			String appoggio=c.toString();
+	        			appoggio.replace("[Element:", "");
+	        			System.out.println(appoggio);
 	        			xPath=xPath+c.toString();
 	        			c=(org.jdom2.Element) c.getParent();
 	        			

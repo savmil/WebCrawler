@@ -7,8 +7,8 @@ public class CrawlerManager
 
 	void startTest(String rootURL,int nStep){
 		
-		BrowserDriver driverBM =  new BrowserDriverBenchmark();
-		BrowserDriver driverBUT = new BrowserDriverUnderTest();
+		BrowserDriver driverBM =  new BrowserDriverChrome();
+		BrowserDriver driverBUT = new BrowserDriverFirefox();
 		
 		/* Codice sequenziale
 		String xmlBM = driverBM.load(rootURL);

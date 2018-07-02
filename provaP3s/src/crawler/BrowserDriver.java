@@ -20,11 +20,11 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.xml.sax.InputSource;
 
 public abstract class BrowserDriver {
-	private RemoteWebDriver driver;
+	protected RemoteWebDriver driver;
 	public BrowserDriver(String driver_exe, String config)
 	{
 		System.setProperty(driver_exe, config);
-		
+		/*
 		if (driver_exe.equals("webdriver.chrome.driver")) // l' ho fatta così perchè se passo l' oggetto chromedriver da browser benchmark ottenfo un errore perchè devo settare prima le proprieta e se le setto di non posso farlo perchè devo prima chimare super
 		{
 			driver=new ChromeDriver();
@@ -34,7 +34,7 @@ public abstract class BrowserDriver {
 		{
 			driver=new FirefoxDriver();
 		}
-
+		*/
 		
 	}
 	public String load(String url)

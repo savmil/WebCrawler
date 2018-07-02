@@ -9,14 +9,16 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-public class BrowserDriverUnderTest extends BrowserDriver{
+public class BrowserDriverFirefox extends BrowserDriver{
 	//private RemoteWebDriver driverf;
 	
-	public BrowserDriverUnderTest(){
-		super("webdriver.chrome.driver", "C:\\Users\\posti\\Documents\\GitHub\\WebCrawler\\provaP3s\\selenium\\geckodriver.exe");
+	public BrowserDriverFirefox(){
+		super("webdriver.gecko.driver","C:\\Users\\Valerio\\git\\WebCrawler\\provaP3s\\selenium\\geckodriver.exe");
+		//super("webdriver.chrome.driver", "C:\\Users\\posti\\Documents\\GitHub\\WebCrawler\\provaP3s\\selenium\\geckodriver.exe");
 		//super("webdriver.gecko.driver", "C:\\Users\\Saverio\\Desktop\\WebCrawler\\provaP3s\\selenium\\geckodriver.exe");
 		//System.setProperty("webdriver.gecko.driver", "C:\\Users\\Saverio\\Desktop\\geckodriver.exe");
 		 //driverf = new FirefoxDriver();
+		this.driver = new FirefoxDriver();
 	}
 	/*@Override
 	public String load(String url) {

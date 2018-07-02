@@ -28,15 +28,17 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-public class BrowserDriverBenchmark extends BrowserDriver {
+public class BrowserDriverChrome extends BrowserDriver {
 	
 	//private RemoteWebDriver driver;
 	
-	public BrowserDriverBenchmark()
+	public BrowserDriverChrome()
 	{
-		super("webdriver.chrome.driver", "C:\\Users\\posti\\Documents\\GitHub\\WebCrawler\\provaP3s\\selenium\\chromedriver.exe");
+		super("webdriver.chrome.driver","C:\\Users\\Valerio\\git\\WebCrawler\\provaP3s\\selenium\\chromedriver.exe");
+		//super("webdriver.chrome.driver", "C:\\Users\\posti\\Documents\\GitHub\\WebCrawler\\provaP3s\\selenium\\chromedriver.exe");
 		//super("webdriver.chrome.driver", "C:\\Users\\Saverio\\Desktop\\WebCrawler\\provaP3s\\selenium\\chromedriver.exe");
 		//driver = new ChromeDriver();	
+		this.driver = new ChromeDriver();
 	}
 	
 	/*@Override

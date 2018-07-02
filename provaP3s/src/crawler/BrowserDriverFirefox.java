@@ -1,40 +1,13 @@
 package crawler;
 
-import java.util.ArrayList;
-
-import javax.xml.crypto.dsig.XMLObject;
-
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class BrowserDriverFirefox extends BrowserDriver{
-	//private RemoteWebDriver driverf;
 	
 	public BrowserDriverFirefox(){
 		super("webdriver.gecko.driver","C:\\Users\\Valerio\\git\\WebCrawler\\provaP3s\\selenium\\geckodriver.exe");
 		//super("webdriver.chrome.driver", "C:\\Users\\posti\\Documents\\GitHub\\WebCrawler\\provaP3s\\selenium\\geckodriver.exe");
 		//super("webdriver.gecko.driver", "C:\\Users\\Saverio\\Desktop\\WebCrawler\\provaP3s\\selenium\\geckodriver.exe");
-		//System.setProperty("webdriver.gecko.driver", "C:\\Users\\Saverio\\Desktop\\geckodriver.exe");
-		 //driverf = new FirefoxDriver();
 		this.driver = new FirefoxDriver();
 	}
-	/*@Override
-	public String load(String url) {
-		// TODO Auto-generated method stub
-		driverf.get(url);
-		return null;
-	}
-
-	@Override
-	public TriggerResult trigger(Element element) {
-		// TODO Auto-generated method stub
-        WebElement trig=Element; // dobbiamo fare in modo tale che un element sia un Web element altrimenti non è cliccabile
-        trig.click();
-		return null;
-	}*/
-
-
-
 }

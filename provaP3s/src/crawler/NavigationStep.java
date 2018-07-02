@@ -1,13 +1,14 @@
 package crawler;
 
 public class NavigationStep {
+	
+	private Element event;
 	private ErrorP errorBUT;
 	private ErrorP errorBM;
 	private IDelta delta;
-	private VisitedPage rightPage; // Nel caso in cui si verifica un errore, occorre eventualmente salvare la pagina in cui esso non si è verificato.
-	private Element event;
-	
-	
+	private VisitedPage rightPage; // Nel caso in cui si verifica un errore, occorre eventualmente salvare la pagina 
+								   // in cui esso non si è verificato.
+
 	public NavigationStep(IDelta delta) {
 		super();
 		this.delta = delta;
@@ -57,7 +58,4 @@ public class NavigationStep {
 	public Element getEvent() {
 		return event;
 	}
-	
-	
-
 }

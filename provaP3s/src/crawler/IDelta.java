@@ -17,8 +17,6 @@ public abstract class IDelta {
 		this.p2 = p2;
 		this.delta = delta;
 	}
-	
-	
 
 	public VisitedPage getP1() {
 		return p1;

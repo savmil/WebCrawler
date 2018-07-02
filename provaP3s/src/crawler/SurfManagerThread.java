@@ -2,13 +2,13 @@ package crawler;
 
 import java.util.List;
 
-public class surfManagerThread extends Thread{
+public class SurfManagerThread extends Thread{
 	
 	private List<TriggerResult> lis;
 	private BrowserDriver driver;
 	private Element element;
 	
-	public surfManagerThread(List<TriggerResult> surfRes,BrowserDriver bro,Element element){
+	public SurfManagerThread(List<TriggerResult> surfRes,BrowserDriver bro,Element element){
 		lis=surfRes;
 		driver=bro;
 		this.element=element;
@@ -18,7 +18,7 @@ public class surfManagerThread extends Thread{
 	public void run(){
 		
 		TriggerResult surfresult = driver.trigger(element);	
-		System.out.println(element.getXPath());
+		System.out.println("[SurfManagerThread]: Elemento triggerato sul browser");
 		synchronized(lis){
 			lis.add(surfresult);
 		}

@@ -9,6 +9,7 @@ public class CrawlerManager
 		
 		BrowserDriver driverBM =  new BrowserDriverChrome();
 		BrowserDriver driverBUT = new BrowserDriverFirefox();
+		System.out.println("[CrawlerManager]: DriverChrome e DriverFirefox instanziati");
 		
 		/* Codice sequenziale
 		String xmlBM = driverBM.load(rootURL);
@@ -33,15 +34,19 @@ public class CrawlerManager
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		System.out.println("[CrawlerManager]: Pagina root scaricata dai browser");
 		
 		IDelta delta = new DeltaSimple(rootBM, rootBUT);
 		delta.computeDelta(rootBM, rootBUT);
 		
 		// il primo step non contiene alcun Elemento
 		NavigationStep step = new NavigationStep(delta);
+		System.out.println("[CrawlerManager]: Passo di navigazione creato: URL= " + rootURL);
+		System.out.println("											   Delta= " + delta.getDelta());
 		
 		Report report = Report.getInstance();
 		report.addStep(step);
+		System.out.println("[CrawlerManager]: Aggiunto il passo iniziale al report");
 		
 		ReloadManager reloadManager= new ReloadManager(driverBM, driverBUT);
 		PlanManager planManager = new PlanManager();
@@ -49,8 +54,8 @@ public class CrawlerManager
 		ComputeManager computeManager = new ComputeManager();
 		
 		// Crawler Cycle
+		System.out.println("[CrawlerManager]: Entro in Crawler Cycle");
 		for(int i=0;i<nStep;i++){
-			
 			reloadManager.reload(rootURL,rootBM,rootBUT);
 			
 			Element element = planManager.plan(rootBM);
@@ -58,14 +63,6 @@ public class CrawlerManager
 			List<TriggerResult> results = surfManager.surf(element);
 
 			computeManager.compute(element, results);
-			
-		}
-		
-		
-		
-	}
-	
-	
-	
-	
+		}	
+	}	
 }

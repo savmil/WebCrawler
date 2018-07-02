@@ -23,7 +23,5 @@ public class TriggerResult {
 	}
 	public void setIsError(boolean isError) {
 		this.isError = isError;
-	}
-	
-	
+	}	
 }

@@ -1,28 +1,12 @@
 package crawler;
 
-import java.io.BufferedWriter;
-import java.io.ByteArrayInputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Pattern;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.jdom2.JDOMException;
 import org.jdom2.filter.ElementFilter;
 import org.jdom2.input.SAXBuilder;
-import org.jdom2.output.DOMOutputter;
-import org.jdom2.output.Format;
-import org.jdom2.output.XMLOutputter;
-import org.jdom2.xpath.XPathExpression;
-import org.jdom2.xpath.XPathFactory;
-import org.jdom2.xpath.XPathHelper;
-import org.w3c.dom.NodeList;
-
 
 public abstract class RootPage extends VisitedPage{
 	
@@ -44,8 +28,7 @@ public abstract class RootPage extends VisitedPage{
 		this.elementList = elements;
 	}
 	
-	public void loadElements()
-	{
+	public void loadElements(){
 		//try {
 			//DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			//DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -90,7 +73,7 @@ public abstract class RootPage extends VisitedPage{
 	        	for(org.jdom2.Element c : root.getDescendants(filterb)) {
 	        		Element button=new Button();
 	        		button.setValue(c.getAttributeValue("value"));
-	        		String xPath="";
+	        		String xPath = "";
 	        		xPath=xPath+"html";
 	        		ArrayList<String> lists=new ArrayList<String>();
 	        		while (!c.toString().equals(root.toString()))

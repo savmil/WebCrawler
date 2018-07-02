@@ -16,20 +16,9 @@ public class SurfManager
 	public List<TriggerResult> surf(Element element){
 		
 		List<TriggerResult> surfResult = new ArrayList<TriggerResult>();
-	
-		/*
-		// da mandare in parallelo: attenzione a come avviene poi la add!
-		TriggerResult resultBM = bm_driver.trigger(element);	
-		TriggerResult resultBUT = but_driver.trigger(element);
 		
-		surfResult.add(resultBM);
-		surfResult.add(resultBUT);
-		
-		return surfResult;
-		*/
-		
-		Thread t_bm=new surfManagerThread(surfResult,bm_driver,element);
-		Thread t_but=new surfManagerThread(surfResult,but_driver,element);
+		Thread t_bm=new SurfManagerThread(surfResult,bm_driver,element);
+		Thread t_but=new SurfManagerThread(surfResult,but_driver,element);
 		
 		try {
 			t_bm.join();

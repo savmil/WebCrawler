@@ -11,7 +11,6 @@ public class PlanManager implements IPlanManager{
        			int randElement=(int)(Math.random()*elementList.size());
        			randomElements=elementList.get(randElement);
         }
-		
 		return randomElements;
 	}
 	
@@ -20,13 +19,10 @@ public class PlanManager implements IPlanManager{
 	public Element plan (RootPage rootBM){
 		
 		List<Element> pageElements = rootBM.getElements();
-		System.out.println("list element"+pageElements.size());
 		Element selectedElement=selectElement(pageElements);
-		System.out.println(selectedElement.getXPath());
+		
+		System.out.println("[PlanManager]: SizeListaElementi = " + pageElements.size());
+		System.out.println("[PlanManager]: Elemento selezionato -> " + selectedElement.getXPath());
 		return selectedElement;
-	}
-	
-	
-	
-	
+	}	
 }

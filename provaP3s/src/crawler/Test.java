@@ -1,6 +1,6 @@
 package crawler;
 
-public class Test implements IUser {
+public class Test implements UIUser {
 
 	@Override
 	public void startTest(String rootURL, int nStep) {
@@ -14,11 +14,10 @@ public class Test implements IUser {
 		// TODO Auto-generated method stub
 
 	}
-	public static void main(String args[])
-	{
+	public static void main(String args[]){
 		
 		Test test=new Test();
-		test.startTest("http://www.repubblica.it", 2);
+		test.startTest("http://www.repubblica.it", 3);
 	}
 
 }

@@ -22,6 +22,10 @@ public class ComputeManager {
 			delta.computeDelta(PageBM, PageBUT);
 			
 			step.setDelta(delta);	//settando delta associo anche le pagine al passo
+			
+			System.out.println("[ComputeManager]: passo di navigazione creato -> ");
+			System.out.println("	Elemento -> " + element.getXPath());
+			System.out.println("	Delta -> " + step.getDelta().getDelta());
 		}
 		
 		if(isErrorBM && isErrorBUT){
@@ -30,6 +34,10 @@ public class ComputeManager {
 			
 			step.setErrorBM(errorBM);
 			step.setErrorBUT(errorBUT);
+			
+			System.out.println("[ComputeManager]: passo di navigazione creato -> ");
+			System.out.println("	Elemento -> " + element.getXPath());
+			System.out.println("	Sono stati salvati i due errori");
 		}
 		
 		if(isErrorBM && !isErrorBUT){
@@ -38,6 +46,10 @@ public class ComputeManager {
 			
 			step.setErrorBM(errorBM);
 			step.setRightPage(PageBUT);
+			
+			System.out.println("[ComputeManager]: passo di navigazione creato -> ");
+			System.out.println("	Elemento -> " + element.getXPath());
+			System.out.println("	è stato salvato l'errore di Chrome");
 		}
 		
 		if(!isErrorBM && isErrorBUT){
@@ -45,16 +57,15 @@ public class ComputeManager {
 			VisitedPage PageBM = new VisitedPageBM(element.getXPath(),resultBM);
 			
 			step.setErrorBUT(errorBUT);
-			step.setRightPage(PageBM);			
+			step.setRightPage(PageBM);	
+			
+			System.out.println("[ComputeManager]: passo di navigazione creato -> ");
+			System.out.println("	Elemento -> " + element.getXPath());
+			System.out.println("	è stato salvato l'errore di Firefox");
 		}
 		
 		Report report = Report.getInstance();
 		report.addStep(step);
 		
 	}
-	
-	
-	
-	
-	
 }

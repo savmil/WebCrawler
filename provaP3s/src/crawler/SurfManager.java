@@ -18,8 +18,9 @@ public class SurfManager
 		List<TriggerResult> surfResult = new ArrayList<TriggerResult>();
 		
 		Thread t_bm=new SurfManagerThread(surfResult,bm_driver,element);
+		t_bm.setName("[SurfManagerThreadChrome]");
 		Thread t_but=new SurfManagerThread(surfResult,but_driver,element);
-		
+		t_but.setName("[SurfManagerThreadFirefox]");
 		try {
 			t_bm.join();
 			t_but.join();

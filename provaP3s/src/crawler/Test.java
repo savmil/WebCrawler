@@ -17,7 +17,7 @@ public class Test implements UIUser {
 	public static void main(String args[]){
 		
 		Test test=new Test();
-		test.startTest("http://www.repubblica.it", 3);
+		test.startTest("http://www.repubblica.it", 1);
 	}
 
 }

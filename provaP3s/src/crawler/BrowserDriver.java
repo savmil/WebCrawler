@@ -21,14 +21,21 @@ public abstract class BrowserDriver {
 		System.setProperty(driver_exe, config);
 	}
 	
+	// la funzione carica l'URL sul driver e restituisce l'xmlDescriptor (in formato stringa) della pagina
 	public String load(String url){
-		// TODO Auto-generated method stub
-		driver.get(url);
-		String HTMLPageSource = driver.getPageSource();
-		String xmls = html2xml(HTMLPageSource);
+		String HTMLPageSource = new String();
+		String xmls = new String();
+		try{
+			driver.get(url);
+			HTMLPageSource = driver.getPageSource();
+			xmls = html2xml(HTMLPageSource);
+		}catch(Throwable e){
+			
+		}
 		
 		return xmls;
 	}
+	
 	public TriggerResult trigger(Element element){
 		String result = null;
 		boolean isError = false;
@@ -37,58 +44,75 @@ public abstract class BrowserDriver {
 			WebElement event = driver.findElementByXPath(element.getXPath()); 
 			event.click();
 			result = driver.getPageSource();
-			System.out.println("[BrowserDriver][trigger]: evento scatenato con successo.");
+			//System.out.println("[BrowserDriver][trigger]: evento scatenato con successo.");
 		}catch(Throwable e){
 			String stackTrace = e.toString();
-			System.out.println(e);
 			result = string2xml(stackTrace);
 			isError = true;
-			System.out.println("[BrowserDriver][trigger]: la stimolazione ha generato un'eccezione.");
+			//System.out.println("[BrowserDriver][trigger]: la stimolazione ha generato un'eccezione.");
 		}
 		
         TriggerResult tResult = new TriggerResult(result,isError);
 		return tResult;
 	}
-	private String html2xml(String HTMLPageSource)
-	{
-		org.jdom2.Document doc=new Document();	
+	
+	// serve per rilasciare le risorse
+	public void closeDriver(){
+		// le due funzioni si comportano allo stesso modo se viene aperta una solo finestra
+		//driver.close();
+		driver.quit();
+	}
+	
+	// la funzione riceve in ingresso la descrizione HTML della pagina (in formato stringa) e restituisce 
+	// la descrizione XML della pagina (in formato stringa)
+	private String html2xml(String HTMLPageSource){
+/*		String result = new String();
+		
+		StringReader frInHtml = new StringReader(HTMLPageSource);
+		BufferedReader brInHtml = new BufferedReader(frInHtml);
+		SAXBuilder saxBuilder = new SAXBuilder();
+		//SAXBuilder saxBuilder = new SAXBuilder("org.ccil.cowan.tagsoup.Parser", false);
+		XMLOutputter outputter = new XMLOutputter();
+		try {
+			Document jdomDocument = saxBuilder.build(brInHtml);
+		    result = outputter.outputString(jdomDocument);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return result;*/
+		
+		Document doc=new Document();
+		String xmls = new String();
 		try{
 			StringReader xml = new StringReader(HTMLPageSource);
 			SAXBuilder sb = new SAXBuilder();
         	doc= sb.build(xml);
         	
-			        	/*
-			            FileWriter fwOutXml = new FileWriter("output.xml");
-			        	BufferedWriter bwOutXml = new BufferedWriter(fwOutXml);
-			        	outputter.output((org.jdom2.Document) doc, bwOutXml);
-			        	*/
-			
 		}catch(IOException e){
 			e.printStackTrace();        	
 		}catch(JDOMException e){
 			e.printStackTrace();     	
 		}
-		XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
-		return outputter.outputString(doc);
+
+    	XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
+    	xmls = outputter.outputString(doc);
+		return xmls;
+		
+    	/* Questo codice serve a stampare su un file xml
+        FileWriter fwOutXml = new FileWriter("output.xml");
+    	BufferedWriter bwOutXml = new BufferedWriter(fwOutXml);
+    	outputter.output((org.jdom2.Document) doc, bwOutXml);
+    	*/
 	}
-	private String string2xml(String HTMLPageSource){
+	
+	// la funzione riceve in ingresso lo stacktrace (in formato stringa) e restituisce
+	// la descrizione XML dello stacktrace (in formato stringa)
+	private String string2xml(String stacktrace){
 		org.jdom2.Element error = new org.jdom2.Element("error");
 		Document doc = new Document(error);
 		org.jdom2.Element stack = new org.jdom2.Element("stack");
 		XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
-		stack.setAttribute(new Attribute("string", HTMLPageSource));
-		/*String xmlPage = new String();
-		try{
-			StringReader xml = new StringReader(HTMLPageSource);
-			SAXBuilder sb = new SAXBuilder();
-			org.jdom2.Document doc = sb.build(new InputSource(xml));
-			XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
-			xmlPage = outputter.outputString(doc);
-		}catch(IOException e){
-			e.printStackTrace();    	
-		}catch(JDOMException e){
-			e.printStackTrace();
-		}*/
+		stack.setAttribute(new Attribute("string", stacktrace));
 		return outputter.outputString(doc);
 	}
 

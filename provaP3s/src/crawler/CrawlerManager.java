@@ -34,7 +34,9 @@ public class CrawlerManager
 		RootPage rootBUT = new RootPageBUT(rootURL);
 		
 		Thread workerBM = new ReloadThread(rootBM,driverBM);
+		workerBM.setName("[LoadManagerThreadChrome]");
 		Thread workerBUT = new ReloadThread(rootBUT,driverBUT);
+		workerBUT.setName("[LoadManagerThreadFirefox]");
 		
 		workerBM.start();
 		workerBUT.start();
@@ -75,6 +77,10 @@ public class CrawlerManager
 			List<TriggerResult> results = surfManager.surf(element);
 
 			computeManager.compute(element, results);
-		}	
+		}
+		
+		driverBM.closeDriver();
+		driverBUT.closeDriver();
+		
 	}	
 }

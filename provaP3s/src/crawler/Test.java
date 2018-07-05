@@ -1,23 +1,13 @@
 package crawler;
 
-public class Test implements UIUser {
+import crawler.UI.*;
 
-	@Override
-	public void startTest(String rootURL, int nStep) {
-		CrawlerManager crawler=CrawlerManager.getInstance();
-		crawler.startTest(rootURL, nStep);
+public class Test {
 
-	}
-
-	@Override
-	public void showReport() {
-		// TODO Auto-generated method stub
-
-	}
 	public static void main(String args[]){
 		
-		Test test=new Test();
-		test.startTest("http://www.repubblica.it", 1);
+		UIUser ui = new UIUserCL();
+		ui.startTest("http://www.repubblica.it", 4);
 	}
 
 }

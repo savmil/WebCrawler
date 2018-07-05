@@ -6,6 +6,8 @@ import java.util.List;
 import crawler.driver.*;
 import crawler.entity.Element;
 
+import java.util.Hashtable;
+
 public class SurfManager 
 {
 	private BrowserDriver bm_driver;
@@ -16,14 +18,18 @@ public class SurfManager
 		but_driver = under_test;
 	}
 	
-	public List<TriggerResult> surf(Element element){
+	public Hashtable<String,TriggerResult> surf(Element element){
 		
-		List<TriggerResult> surfResult = new ArrayList<TriggerResult>();		
-		
+		//List<TriggerResult> surfResult = new ArrayList<TriggerResult>();
+		Hashtable<String, TriggerResult> surfResult=new Hashtable<>();
+
 		Thread t_bm=new SurfManagerThread(surfResult,bm_driver,element);
 		t_bm.setName("[SurfManagerThreadChrome]");
+		//t_bm.setName("0");
+	
 		Thread t_but=new SurfManagerThread(surfResult,but_driver,element);
 		t_but.setName("[SurfManagerThreadFirefox]");
+		//t_but.setName("1");
 		try {
 			t_bm.join();
 			t_but.join();

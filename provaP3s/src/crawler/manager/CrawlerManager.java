@@ -7,6 +7,8 @@ import crawler.driver.*;
 import crawler.entity.pages.*;
 import crawler.entity.*;
 
+import java.util.Hashtable;
+
 public class CrawlerManager 
 {
 	/***singleton***/
@@ -67,7 +69,8 @@ public class CrawlerManager
 		System.out.println("[CrawlerManager]: Aggiunto il passo iniziale al report");
 		
 		ReloadManager reloadManager= new ReloadManager(driverBM, driverBUT);
-		IPlanManager planManager = new PlanManager();
+		//IPlanManager planManager = new PlanManager();
+		PlanManager planManager = new PlanManager();
 		SurfManager surfManager = new SurfManager(driverBM,driverBUT);
 		ComputeManager computeManager = new ComputeManager();
 		
@@ -78,7 +81,7 @@ public class CrawlerManager
 			
 			Element element = planManager.plan(rootBM);
 			
-			List<TriggerResult> results = surfManager.surf(element);
+			Hashtable<String, TriggerResult> results = surfManager.surf(element);
 
 			computeManager.compute(element, results);
 		}

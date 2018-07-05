@@ -7,19 +7,26 @@ import crawler.entity.delta.*;
 import crawler.driver.TriggerResult;
 import crawler.entity.*;
 
+import java.util.Hashtable;
 
 public class ComputeManager {
 	
-	public void compute(Element element,List<TriggerResult> surfResult){
+	public void compute(Element element,Hashtable<String,TriggerResult> surfResult){
 		
 		NavigationStep step = new NavigationStep(element);
 		
 		// recupero parametri
+		/*
 		String resultBM = surfResult.get(0).getResult();
 		boolean isErrorBM = surfResult.get(0).getIsError();
 		String resultBUT = surfResult.get(1).getResult();
 		boolean isErrorBUT = surfResult.get(1).getIsError();
-		
+		*/
+		String resultBM = surfResult.get("[SurfManagerThreadChrome]").getResult();
+		boolean isErrorBM = surfResult.get("[SurfManagerThreadChrome]").getIsError();
+		String resultBUT = surfResult.get("[SurfManagerThreadFirefox]").getResult();
+		boolean isErrorBUT = surfResult.get("[SurfManagerThreadFirefox]").getIsError();
+
 		if(!isErrorBM && !isErrorBUT){
 			VisitedPage PageBM = new VisitedPageBM(element.getXPath(),resultBM);
 			VisitedPage PageBUT = new VisitedPageBUT(element.getXPath(),resultBUT);

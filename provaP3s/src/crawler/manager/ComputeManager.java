@@ -24,18 +24,20 @@ public class ComputeManager {
 		*/
 		String resultBM = surfResult.get("[SurfManagerThreadChrome]").getResult();
 		boolean isErrorBM = surfResult.get("[SurfManagerThreadChrome]").getIsError();
+		String xpathBM=surfResult.get("[SurfManagerThreadChrome]").getXpath();
 		String resultBUT = surfResult.get("[SurfManagerThreadFirefox]").getResult();
 		boolean isErrorBUT = surfResult.get("[SurfManagerThreadFirefox]").getIsError();
-
+		String xpathBUT=surfResult.get("[SurfManagerThreadFirefox]").getXpath();
+		
 		if(!isErrorBM && !isErrorBUT){
-			VisitedPage PageBM = new VisitedPageBM(element.getXPath(),resultBM);
-			VisitedPage PageBUT = new VisitedPageBUT(element.getXPath(),resultBUT);
+			VisitedPage PageBM = new VisitedPageBM(xpathBM,resultBM);
+			VisitedPage PageBUT = new VisitedPageBUT(xpathBUT,resultBUT);
 			
 			IDelta delta = new DeltaSimple(PageBM, PageBUT);
 			delta.computeDelta(PageBM, PageBUT);
 			
 			step.setDelta(delta);	//settando delta associo anche le pagine al passo
-			
+			element.setXPath(xpathBM);
 			System.out.println("[ComputeManager]: passo di navigazione creato -> ");
 			System.out.println("	Elemento -> " + element.getXPath());
 			System.out.println("	Delta -> " + step.getDelta().getDelta());
@@ -49,7 +51,7 @@ public class ComputeManager {
 			step.setErrorBUT(errorBUT);
 			
 			System.out.println("[ComputeManager]: passo di navigazione creato -> ");
-			System.out.println("	Elemento -> " + element.getXPath());
+			//System.out.println("	Elemento -> " + element.getXPath());
 			System.out.println("	Sono stati salvati i due errori");
 		}
 		
@@ -59,7 +61,7 @@ public class ComputeManager {
 			
 			step.setErrorBM(errorBM);
 			step.setRightPage(PageBUT);
-			
+			element.setXPath(xpathBUT);
 			System.out.println("[ComputeManager]: passo di navigazione creato -> ");
 			System.out.println("	Elemento -> " + element.getXPath());
 			System.out.println("	è stato salvato l'errore di Chrome");
@@ -71,7 +73,7 @@ public class ComputeManager {
 			
 			step.setErrorBUT(errorBUT);
 			step.setRightPage(PageBM);	
-			
+			element.setXPath(xpathBM);
 			System.out.println("[ComputeManager]: passo di navigazione creato -> ");
 			System.out.println("	Elemento -> " + element.getXPath());
 			System.out.println("	è stato salvato l'errore di Firefox");

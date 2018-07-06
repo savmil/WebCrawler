@@ -25,7 +25,6 @@ public class PlanManager implements IPlanManager{
 		Element selectedElement=selectElement(pageElements);
 		
 		System.out.println("[PlanManager]: SizeListaElementi = " + pageElements.size());
-		System.out.println("[PlanManager]: Elemento selezionato -> " + selectedElement.getXPath());
 		return selectedElement;
 	}	
 }

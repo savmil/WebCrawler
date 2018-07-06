@@ -40,21 +40,19 @@ public abstract class BrowserDriver {
 			
 			List<WebElement> anchors=driver.findElementsByTagName("a");
 			ArrayList<Element> elementList=new ArrayList<Element>();
-			System.out.println("sono qui"+anchors.size());
-			for (WebElement element:anchors)
+			
+			for (int i=0;i<=anchors.size();i++)
 			{
-				
 				Element anchor=new AnchorLink();
-				anchor.setXPath(generateXPATH(element, ""));
-				anchor.setValue(element.getAttribute("value"));
+				anchor.setId(i);
 				elementList.add(anchor);
 			}
 			List<WebElement> buttons=driver.findElementsByTagName("button");
-			for (WebElement element:buttons)
+			for (int i=0;i<=buttons.size();i++)
 			{
 				Element button=new Button();
-				button.setXPath(generateXPATH(element, ""));
-				button.setValue(element.getAttribute("value"));
+				//button.setXPath(generateXPATH(element, ""));
+				button.setId(i);
 				elementList.add(button);
 			}
 			htmlData.setHtml(HTMLPageSource);
@@ -71,22 +69,36 @@ public abstract class BrowserDriver {
 		String result = null;
 		boolean isError = true;
 		TriggerResult tResult = null;
-		
 		try{
-			WebElement event = driver.findElementByXPath(element.getXPath()); 
-			event.click();
+			List<WebElement> listEvent=null;
+			System.out.println(element.getClass().toString());
+			if(element.getClass().toString().equals("class crawler.entity.AnchorLink"))
+			{
+				listEvent = driver.findElementsByTagName("a");
+			}
+			else if(element.getClass().toString().equals("class crawler.entity.Button"))
+			{
+				listEvent = driver.findElementsByTagName("button"); 
+			}
+			String xPath=generateXPATH(listEvent.get(element.getId()));
+			listEvent.get(element.getId()).click();
+			
+			
 			driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+			
 			result = driver.getPageSource();
 			//result = html2xml(result);
 			isError = false;
 			//System.out.println("[BrowserDriver][trigger]: evento scatenato con successo.");
 			
-			tResult = new TriggerResult(result,isError);
+			
+			
+			tResult = new TriggerResult(result,isError,xPath);
 
 		}catch(Throwable e){
 			String stackTrace = e.toString();
 			result = string2xml(stackTrace);
-			tResult = new TriggerResult(result,isError);
+			tResult = new TriggerResult(result,isError,null);
 			return tResult;
 			//System.out.println("[BrowserDriver][trigger]: la stimolazione ha generato un'eccezione.");
 		}
@@ -96,21 +108,26 @@ public abstract class BrowserDriver {
 		
 		
 	}
-	private String generateXPATH(WebElement childElement, String current) {
-	    
+	private String generateXPATH(WebElement childElement) {
+		//System.out.println("inizio xpath");
 	    String xpath=new String();
 	   /* if(childTag.equals("html")) {
 	        return "/html[1]"+current;
 	    }*/
+	    
 	    int count = 0;
+	    
 	    String childTag = childElement.getTagName();
+	    //System.out.println(childTag);
 	    while(!childTag.equals("html"))
 	    {
+	    	//System.out.println("inizio ciclo1");
 	    	int i=0;
 	    	WebElement parentElement = childElement.findElement(By.xpath("..")); 
 	 	    List<WebElement> childrenElements = parentElement.findElements(By.xpath("*"));
 	    	while((i<childrenElements.size() && !childElement.equals(childrenElements.get(i)))) 
 	    	{
+	    		//System.out.println("inizio ciclo2");
 	    		WebElement childrenElement = childrenElements.get(i);
 	    		String childrenElementTag = childrenElement.getTagName();
 	    		if(childTag.equals(childrenElementTag)) 
@@ -124,6 +141,7 @@ public abstract class BrowserDriver {
 	    		}*/
 	    	}
 	    	xpath="/" + childTag + "[" + count + "]"+xpath;
+	    	//System.out.println(xpath);
 	    	childElement=parentElement;
 	    	childTag=childElement.getTagName();
 	    }

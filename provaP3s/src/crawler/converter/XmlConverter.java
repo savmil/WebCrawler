@@ -33,7 +33,6 @@ public class XmlConverter
 			Document doc=new Document();
 			String xmls = new String();
 			try{
-				System.out.println(HTMLPageSource);
 				StringReader xml = new StringReader(HTMLPageSource);
 				SAXBuilder sb = new SAXBuilder();
 	        	doc= sb.build(new InputSource(xml));

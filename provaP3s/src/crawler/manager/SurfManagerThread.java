@@ -23,6 +23,7 @@ public class SurfManagerThread extends Thread{
 	public void run(){
 		
 		TriggerResult surfresult = driver.trigger(element);
+		//System.out.println("Trigger"+surfresult.getXpath());
 		if(!surfresult.getIsError())
 		{
 			System.out.println(this.getName() + ": Elemento triggerato sul browser");

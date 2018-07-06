@@ -5,13 +5,22 @@ public class TriggerResult {
 	
 	private String result;	//xmlDescr del risultato
 	private boolean isError;
-	
-	public TriggerResult(String result, boolean isError) {
+	private String xpath;
+	public TriggerResult(String result, boolean isError, String xpath) {
 		super();
 		this.result = result;
 		this.isError = isError;
+		this.xpath = xpath;
 	}
 	
+	public String getXpath() {
+		return xpath;
+	}
+
+	public void setXpath(String xpath) {
+		this.xpath = xpath;
+	}
+
 	public String getResult() {
 		return result;
 	}

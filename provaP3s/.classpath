@@ -15,5 +15,8 @@
 	<classpathentry kind="lib" path="selenium/libs/okhttp-3.9.1.jar"/>
 	<classpathentry kind="lib" path="selenium/libs/okio-1.13.0.jar"/>
 	<classpathentry kind="lib" path="jdom/jdom-2.0.6.jar"/>
+	<classpathentry kind="lib" path="jsoup/jsoup-1.11.3.jar"/>
+	<classpathentry kind="lib" path="jdom/xsoup-0.3.0.jar"/>
+	<classpathentry kind="lib" path="xpathgen.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

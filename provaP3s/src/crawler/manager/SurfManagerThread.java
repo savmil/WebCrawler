@@ -1,6 +1,5 @@
 package crawler.manager;
 
-import java.util.List;
 import crawler.driver.BrowserDriver;
 import crawler.driver.TriggerResult;
 import crawler.entity.Element;

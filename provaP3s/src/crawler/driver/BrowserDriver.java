@@ -1,9 +1,13 @@
 package crawler.driver;
 
+import crawler.entity.AnchorLink;
+import crawler.entity.Button;
 import crawler.entity.Element;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.jdom2.Attribute;
@@ -12,6 +16,7 @@ import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -25,19 +30,41 @@ public abstract class BrowserDriver {
 	}
 	
 	// la funzione carica l'URL sul driver e restituisce l'xmlDescriptor (in formato stringa) della pagina
-	public String load(String url){
+	public HtmlData load(String url){
 		String HTMLPageSource = new String();
-		String xmls = new String();
-		try{
+		HtmlData htmlData=new HtmlData();
+		try
+		{
 			driver.get(url);
-			
 			HTMLPageSource = driver.getPageSource();
-			xmls = html2xml(HTMLPageSource);
-		}catch(Throwable e){
+			
+			List<WebElement> anchors=driver.findElementsByTagName("a");
+			ArrayList<Element> elementList=new ArrayList<Element>();
+			System.out.println("sono qui"+anchors.size());
+			for (WebElement element:anchors)
+			{
+				
+				Element anchor=new AnchorLink();
+				anchor.setXPath(generateXPATH(element, ""));
+				anchor.setValue(element.getAttribute("value"));
+				elementList.add(anchor);
+			}
+			List<WebElement> buttons=driver.findElementsByTagName("button");
+			for (WebElement element:buttons)
+			{
+				Element button=new Button();
+				button.setXPath(generateXPATH(element, ""));
+				button.setValue(element.getAttribute("value"));
+				elementList.add(button);
+			}
+			htmlData.setHtml(HTMLPageSource);
+			htmlData.setElementList(elementList);
+		}
+		catch(Throwable e){
 			
 		}
+		return htmlData;
 		
-		return xmls;
 	}
 	
 	public TriggerResult trigger(Element element){
@@ -50,7 +77,7 @@ public abstract class BrowserDriver {
 			event.click();
 			driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
 			result = driver.getPageSource();
-			result = html2xml(result);
+			//result = html2xml(result);
 			isError = false;
 			//System.out.println("[BrowserDriver][trigger]: evento scatenato con successo.");
 			
@@ -69,54 +96,45 @@ public abstract class BrowserDriver {
 		
 		
 	}
-	
+	private String generateXPATH(WebElement childElement, String current) {
+	    
+	    String xpath=new String();
+	   /* if(childTag.equals("html")) {
+	        return "/html[1]"+current;
+	    }*/
+	    int count = 0;
+	    String childTag = childElement.getTagName();
+	    while(!childTag.equals("html"))
+	    {
+	    	int i=0;
+	    	WebElement parentElement = childElement.findElement(By.xpath("..")); 
+	 	    List<WebElement> childrenElements = parentElement.findElements(By.xpath("*"));
+	    	while((i<childrenElements.size() && !childElement.equals(childrenElements.get(i)))) 
+	    	{
+	    		WebElement childrenElement = childrenElements.get(i);
+	    		String childrenElementTag = childrenElement.getTagName();
+	    		if(childTag.equals(childrenElementTag)) 
+	    		{
+	    			count++;
+	    		}
+	    		i++;
+	    		/*if(childElement.equals(childrenElement)) 
+	    		{
+	    			return generateXPATH(parentElement, "/" + childTag + "[" + count + "]"+current);
+	    		}*/
+	    	}
+	    	xpath="/" + childTag + "[" + count + "]"+xpath;
+	    	childElement=parentElement;
+	    	childTag=childElement.getTagName();
+	    }
+	    xpath="html"+xpath;
+	    return xpath;
+	}
 	// serve per rilasciare le risorse
 	public void closeDriver(){
 		// le due funzioni si comportano allo stesso modo se viene aperta una solo finestra
 		//driver.close();
 		driver.quit();
-	}
-	
-	// la funzione riceve in ingresso la descrizione HTML della pagina (in formato stringa) e restituisce 
-	// la descrizione XML della pagina (in formato stringa)
-	private String html2xml(String HTMLPageSource){
-/*		String result = new String();
-		
-		StringReader frInHtml = new StringReader(HTMLPageSource);
-		BufferedReader brInHtml = new BufferedReader(frInHtml);
-		SAXBuilder saxBuilder = new SAXBuilder();
-		//SAXBuilder saxBuilder = new SAXBuilder("org.ccil.cowan.tagsoup.Parser", false);
-		XMLOutputter outputter = new XMLOutputter();
-		try {
-			Document jdomDocument = saxBuilder.build(brInHtml);
-		    result = outputter.outputString(jdomDocument);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		return result;*/
-		
-		Document doc=new Document();
-		String xmls = new String();
-		try{
-			StringReader xml = new StringReader(HTMLPageSource);
-			SAXBuilder sb = new SAXBuilder();
-        	doc= sb.build(xml);
-        	
-		}catch(IOException e){
-			//e.printStackTrace();        	
-		}catch(JDOMException e){
-			//e.printStackTrace();     	
-		}
-
-    	XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
-    	xmls = outputter.outputString(doc);
-		return xmls;
-		
-    	/* Questo codice serve a stampare su un file xml
-        FileWriter fwOutXml = new FileWriter("output.xml");
-    	BufferedWriter bwOutXml = new BufferedWriter(fwOutXml);
-    	outputter.output((org.jdom2.Document) doc, bwOutXml);
-    	*/
 	}
 	
 	// la funzione riceve in ingresso lo stacktrace (in formato stringa) e restituisce

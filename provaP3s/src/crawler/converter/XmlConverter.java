@@ -3,12 +3,10 @@ package crawler.converter;
 import java.io.IOException;
 import java.io.StringReader;
 
-import org.jdom2.Document;
-import org.jdom2.JDOMException;
-import org.jdom2.input.SAXBuilder;
-import org.jdom2.output.Format;
-import org.jdom2.output.XMLOutputter;
-import org.xml.sax.InputSource;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
+
 
 public class XmlConverter 
 {
@@ -30,8 +28,12 @@ public class XmlConverter
 			}
 			return result;*/
 			
-			Document doc=new Document();
-			String xmls = new String();
+			Document doc=Jsoup.parse(HTMLPageSource);
+			System.out.println(HTMLPageSource);
+			doc.outputSettings().syntax(Document.OutputSettings.Syntax.xml); 
+			//System.out.println(doc.html());
+		    return "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n"+doc.html();
+			/*String xmls = new String();
 			try{
 				StringReader xml = new StringReader(HTMLPageSource);
 				SAXBuilder sb = new SAXBuilder();
@@ -45,7 +47,7 @@ public class XmlConverter
 
 	    	XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
 	    	xmls = outputter.outputString(doc);
-			return xmls;
+			return xmls;*/
 			
 	    	/* Questo codice serve a stampare su un file xml
 	        FileWriter fwOutXml = new FileWriter("output.xml");

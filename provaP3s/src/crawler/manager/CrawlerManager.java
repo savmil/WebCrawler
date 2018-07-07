@@ -58,7 +58,6 @@ public class CrawlerManager
 		
 		IDelta delta = new DeltaSimple(rootBM, rootBUT);
 		delta.computeDelta(rootBM, rootBUT);
-		
 		// il primo step non contiene alcun Elemento
 		NavigationStep step = new NavigationStep(delta);
 		System.out.println("[CrawlerManager]: Passo di navigazione creato: URL= " + rootURL);

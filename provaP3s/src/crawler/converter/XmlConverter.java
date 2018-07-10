@@ -29,7 +29,7 @@ public class XmlConverter
 			return result;*/
 			
 			Document doc=Jsoup.parse(HTMLPageSource);
-			System.out.println(HTMLPageSource);
+			//System.out.println(HTMLPageSource);
 			doc.outputSettings().syntax(Document.OutputSettings.Syntax.xml); 
 			//System.out.println(doc.html());
 		    return "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n"+doc.html();

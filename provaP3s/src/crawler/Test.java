@@ -8,7 +8,7 @@ public class Test {
 		
 		UIUser ui = new UIUserCL();
 		//tinytuba.com
-		ui.startTest("http://www.tinytuba.com/", 1);
+		ui.startTest("http://www.docenti.unina.it/", 1);
 	}
 
 }

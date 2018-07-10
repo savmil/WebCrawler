@@ -39,8 +39,11 @@ public class CrawlerManager
 		
 		RootPage rootBM = new RootPageBM(rootURL);
 		RootPage rootBUT = new RootPageBUT(rootURL);
-		
-		Thread workerBM = new ReloadThread(rootBM,driverBM);
+		ReloadManager reloadManager= new ReloadManager(driverBM, driverBUT);
+		//IPlanManager planManager = new PlanManager();
+		reloadManager.reload(rootURL,rootBM,rootBUT);
+		ComputeManager computeManager = new ComputeManager();
+		/*Thread workerBM = new ReloadThread(rootBM,driverBM);
 		workerBM.setName("[LoadManagerThreadChrome]");
 		Thread workerBUT = new ReloadThread(rootBUT,driverBUT);
 		workerBUT.setName("[LoadManagerThreadFirefox]");
@@ -53,25 +56,22 @@ public class CrawlerManager
 			workerBUT.join();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-		}
+		}*/
 		System.out.println("[CrawlerManager]: Pagina root scaricata dai browser");
-		
-		IDelta delta = new DeltaSimple(rootBM, rootBUT);
-		delta.computeDelta(rootBM, rootBUT);
+		NavigationStep step=computeManager.computeR(rootBM, rootBUT);
+		//IDelta delta = new DeltaSimple(rootBM, rootBUT);
+		//delta.computeDelta(rootBM, rootBUT);
 		// il primo step non contiene alcun Elemento
-		NavigationStep step = new NavigationStep(delta);
+		
 		System.out.println("[CrawlerManager]: Passo di navigazione creato: URL= " + rootURL);
-		System.out.println("											   Delta= " + delta.getDelta());
+		System.out.println("											   Delta= " + step.getDelta());
 		
 		Report report = Report.getInstance();
 		report.addStep(step);
 		System.out.println("[CrawlerManager]: Aggiunto il passo iniziale al report");
-		
-		ReloadManager reloadManager= new ReloadManager(driverBM, driverBUT);
-		//IPlanManager planManager = new PlanManager();
 		PlanManager planManager = new PlanManager();
 		SurfManager surfManager = new SurfManager(driverBM,driverBUT);
-		ComputeManager computeManager = new ComputeManager();
+		
 		
 		// Crawler Cycle
 		System.out.println("[CrawlerManager]: Entro in Crawler Cycle");

@@ -10,7 +10,13 @@ import crawler.entity.*;
 import java.util.Hashtable;
 
 public class ComputeManager {
-	
+	public NavigationStep computeR(RootPage rootBM,RootPage rootBUT)// per noi va bene perchè sicuramente le abbiamo queste due pagine
+	{
+		IDelta delta = new DeltaSimple(rootBM, rootBUT);
+		delta.computeDelta(rootBM, rootBUT);
+		NavigationStep step = new NavigationStep(delta);
+		return step;
+	}
 	public void compute(Element element,Hashtable<String,TriggerResult> surfResult){
 		
 		NavigationStep step = new NavigationStep(element);
@@ -32,7 +38,6 @@ public class ComputeManager {
 		if(!isErrorBM && !isErrorBUT){
 			VisitedPage PageBM = new VisitedPageBM(xpathBM,resultBM);
 			VisitedPage PageBUT = new VisitedPageBUT(xpathBUT,resultBUT);
-			
 			IDelta delta = new DeltaSimple(PageBM, PageBUT);
 			delta.computeDelta(PageBM, PageBUT);
 			
@@ -57,7 +62,7 @@ public class ComputeManager {
 		
 		if(isErrorBM && !isErrorBUT){
 			ErrorP errorBM = new ErrorP(resultBM);
-			VisitedPage PageBUT = new VisitedPageBUT(element.getXPath(),resultBUT);
+			VisitedPage PageBUT = new VisitedPageBUT(xpathBUT,resultBUT);
 			
 			step.setErrorBM(errorBM);
 			step.setRightPage(PageBUT);
@@ -69,7 +74,7 @@ public class ComputeManager {
 		
 		if(!isErrorBM && isErrorBUT){
 			ErrorP errorBUT = new ErrorP(resultBUT);
-			VisitedPage PageBM = new VisitedPageBM(element.getXPath(),resultBM);
+			VisitedPage PageBM = new VisitedPageBM(xpathBM,resultBM);
 			
 			step.setErrorBUT(errorBUT);
 			step.setRightPage(PageBM);	

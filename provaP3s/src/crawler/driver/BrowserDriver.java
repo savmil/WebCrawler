@@ -67,11 +67,11 @@ public abstract class BrowserDriver {
 		try{
 			List<WebElement> listEvent=null;
 			System.out.println(element.getClass().toString());
-			if(element.getClass().toString().equals("class crawler.entity.AnchorLink"))
+			if(element instanceof AnchorLink)
 			{
 				listEvent = driver.findElementsByTagName("a");
 			}
-			else if(element.getClass().toString().equals("class crawler.entity.Button"))
+			else if(element instanceof Button)
 			{
 				listEvent = driver.findElementsByTagName("button"); 
 			}

@@ -9,12 +9,17 @@ import crawler.entity.*;
 import java.util.Hashtable;
 
 public class ComputeManager {
-	public NavigationStep computeR(RootPage rootBM,RootPage rootBUT)// per noi va bene perchè sicuramente le abbiamo queste due pagine
+	public void compute(RootPage rootBM,RootPage rootBUT)// per noi va bene perchè sicuramente le abbiamo queste due pagine
 	{
 		IDelta delta = new DeltaSimple(rootBM, rootBUT);
 		delta.computeDelta(rootBM, rootBUT);
 		NavigationStep step = new NavigationStep(delta);
-		return step;
+		Report report = Report.getInstance();
+		report.addStep(step);
+		System.out.println("[CrawlerManager]: Passo di navigazione creato: URL= " + rootBM.getUrl());
+		System.out.println("											   Delta= " + step.getDelta());
+		System.out.println("[CrawlerManager]: Aggiunto il passo iniziale al report");
+		
 	}
 	public void compute(Element element,Hashtable<String,TriggerResult> surfResult){
 		

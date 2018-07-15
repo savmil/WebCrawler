@@ -16,9 +16,9 @@ public class ComputeManager {
 		NavigationStep step = new NavigationStep(delta);
 		Report report = Report.getInstance();
 		report.addStep(step);
-		System.out.println("[CrawlerManager]: Passo di navigazione creato: URL= " + rootBM.getUrl());
+		System.out.println("[ComputeManager]: Passo di navigazione creato: URL= " + rootBM.getUrl());
 		System.out.println("											   Delta= " + step.getDelta().getDelta());
-		System.out.println("[CrawlerManager]: Aggiunto il passo iniziale al report");
+		System.out.println("[ComputeManager]: Aggiunto il passo iniziale al report");
 		
 	}
 	public void compute(Element element,Hashtable<String,TriggerResult> surfResult){

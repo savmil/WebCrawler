@@ -1,10 +1,9 @@
 package crawler.manager;
 
+import crawler.converter.XmlConverter;
 import crawler.driver.BrowserDriver;
 import crawler.driver.TriggerResult;
 import crawler.entity.Element;
-
-
 import java.util.Hashtable;
 
 public class SurfManagerThread extends Thread{
@@ -24,7 +23,13 @@ public class SurfManagerThread extends Thread{
 		
 		TriggerResult surfresult = driver.trigger(element);
 		//System.out.println("Trigger"+surfresult.getXpath());
-		if(!surfresult.getIsError())
+		if(surfresult.getIsError())
+		{
+			XmlConverter converter =new XmlConverter();
+			String XMLerror=converter.string2xml(surfresult.getResult());
+			surfresult.setResult(XMLerror);
+		}
+		else
 		{
 			System.out.println(this.getName() + ": Elemento triggerato sul browser");
 		}

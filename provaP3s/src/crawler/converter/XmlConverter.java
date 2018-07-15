@@ -1,18 +1,12 @@
 package crawler.converter;
-
-import java.io.IOException;
-import java.io.StringReader;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-
-
 
 public class XmlConverter 
 {
 	// la funzione riceve in ingresso la descrizione HTML della pagina (in formato stringa) e restituisce 
 		// la descrizione XML della pagina (in formato stringa)
-		public String html2xml(String HTMLPageSource){
+		public String string2xml(String string){
 	/*		String result = new String();
 			
 			StringReader frInHtml = new StringReader(HTMLPageSource);
@@ -28,7 +22,7 @@ public class XmlConverter
 			}
 			return result;*/
 			
-			Document doc=Jsoup.parse(HTMLPageSource);
+			Document doc=Jsoup.parse(string);
 			//System.out.println(HTMLPageSource);
 			doc.outputSettings().syntax(Document.OutputSettings.Syntax.xml); 
 			//System.out.println(doc.html());

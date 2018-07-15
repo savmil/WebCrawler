@@ -11,7 +11,7 @@ public class PlanManager implements IPlanManager{
 		
 		Element randomElements = new Element();
 		if (elementList.size()!=0){
-       			int randElement=(int)(Math.random()*elementList.size());
+       			int randElement=(int)(Math.random()*(elementList.size()-1));
        			randomElements=elementList.get(randElement);
         }
 		return randomElements;

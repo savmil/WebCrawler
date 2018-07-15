@@ -1,6 +1,5 @@
 package crawler.manager;
 
-import java.util.List;
 
 import crawler.entity.pages.*;
 import crawler.entity.delta.*;
@@ -34,7 +33,8 @@ public class ComputeManager {
 		String resultBUT = surfResult.get("[SurfManagerThreadFirefox]").getResult();
 		boolean isErrorBUT = surfResult.get("[SurfManagerThreadFirefox]").getIsError();
 		String xpathBUT=surfResult.get("[SurfManagerThreadFirefox]").getXpath();
-		
+		//System.out.println("errore 1 \r"+resultBM);
+		//System.out.println("errore 2 \r"+resultBUT);
 		if(!isErrorBM && !isErrorBUT){
 			VisitedPage PageBM = new VisitedPageBM(xpathBM,resultBM);
 			VisitedPage PageBUT = new VisitedPageBUT(xpathBUT,resultBUT);

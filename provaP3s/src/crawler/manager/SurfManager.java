@@ -1,8 +1,5 @@
 package crawler.manager;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import crawler.driver.*;
 import crawler.entity.Element;
 

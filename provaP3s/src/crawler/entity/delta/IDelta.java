@@ -1,3 +1,4 @@
+
 package crawler.entity.delta;
 
 import crawler.entity.pages.VisitedPage;

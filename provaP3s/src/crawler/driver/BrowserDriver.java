@@ -4,18 +4,12 @@ import crawler.entity.AnchorLink;
 import crawler.entity.Button;
 import crawler.entity.Element;
 
-import java.io.IOException;
-import java.io.StringReader;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import org.jdom2.Attribute;
-import org.jdom2.Document;
-import org.jdom2.JDOMException;
-import org.jdom2.input.SAXBuilder;
-import org.jdom2.output.Format;
-import org.jdom2.output.XMLOutputter;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -97,8 +91,7 @@ public abstract class BrowserDriver {
 
 		}catch(Throwable e){
 			String stackTrace = e.toString();
-			result = string2xml(stackTrace);
-			tResult = new TriggerResult(result,isError,null);
+			tResult = new TriggerResult(stackTrace,isError,null);
 			return tResult;
 			//System.out.println("[BrowserDriver][trigger]: la stimolazione ha generato un'eccezione.");
 		}
@@ -157,13 +150,6 @@ public abstract class BrowserDriver {
 	
 	// la funzione riceve in ingresso lo stacktrace (in formato stringa) e restituisce
 	// la descrizione XML dello stacktrace (in formato stringa)
-	private String string2xml(String stacktrace){
-		org.jdom2.Element error = new org.jdom2.Element("error");
-		Document doc = new Document(error);
-		org.jdom2.Element stack = new org.jdom2.Element("stack");
-		XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
-		stack.setAttribute(new Attribute("string", stacktrace));
-		return outputter.outputString(doc);
-	}
+	
 
 }

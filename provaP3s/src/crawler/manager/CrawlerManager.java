@@ -1,8 +1,5 @@
 package crawler.manager;
 
-import java.util.List;
-
-import crawler.entity.delta.*;
 import crawler.driver.*;
 import crawler.entity.pages.*;
 import crawler.entity.*;

@@ -67,13 +67,12 @@ public abstract class BrowserDriver {
 		try{
 			List<WebElement> listEvent=null;
 			System.out.println(element.getClass().toString());
-<<<<<<< HEAD
 			if(element instanceof AnchorLink)
-=======
+
 			
 			// provare la condizione in quest'altra forma: (element instanceof AnchorLink)
-			if(element.getClass().toString().equals("class crawler.entity.AnchorLink"))
->>>>>>> branch 'master' of https://github.com/savmil/WebCrawler.git
+			//if(element.getClass().toString().equals("class crawler.entity.AnchorLink"))
+
 			{
 				listEvent = driver.findElementsByTagName("a");
 			}

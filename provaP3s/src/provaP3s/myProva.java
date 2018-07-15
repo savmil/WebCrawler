@@ -4,23 +4,8 @@ package provaP3s;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.xml.sax.SAXException;
-import org.xml.sax.XMLReader;
-
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.StringReader;
 import java.util.List;
 
-import javax.swing.text.html.parser.DocumentParser;
-import javax.xml.crypto.dsig.XMLObject;
-
-import org.jdom2.Document;
-import org.jdom2.JDOMException;
-import org.jdom2.input.SAXBuilder;
-import org.jdom2.output.Format;
-import org.jdom2.output.XMLOutputter;
 
 public class myProva {
 	
@@ -59,7 +44,7 @@ public class myProva {
 		//HTMLtoXML();
 	}
 	
-	public static void HTMLtoXML(){
+	/*public static void HTMLtoXML(){
 		
 		RemoteWebDriver driver;
 		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Valerio\\git\\WebCrawler\\provaP3s\\selenium\\chromedriver.exe");
@@ -125,8 +110,8 @@ public class myProva {
         
         
         
-        driver.close();
-        driver.quit();
+        //driver.close();
+        //driver.quit();
         
         
         /*DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -159,4 +144,4 @@ public class myProva {
         
 	}
 
-}
+//}

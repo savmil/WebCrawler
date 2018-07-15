@@ -27,7 +27,7 @@ public class ComputeManager {
 		String xpathBUT=surfResult.get("[SurfManagerThreadFirefox]").getXpath();
 		
 		element.setXPath(xpathBM);
-		
+		//System.out.println("xpath \r \r \r"+xpathBM);
 		NavigationStep step = new NavigationStep(element);
 		
 		// recupero parametri

@@ -40,6 +40,7 @@ public class CrawlerManager
 		//IPlanManager planManager = new PlanManager();
 		reloadManager.reload(rootURL,rootBM,rootBUT);
 		ComputeManager computeManager = new ComputeManager();
+		
 		/*Thread workerBM = new ReloadThread(rootBM,driverBM);
 		workerBM.setName("[LoadManagerThreadChrome]");
 		Thread workerBUT = new ReloadThread(rootBUT,driverBUT);
@@ -54,6 +55,7 @@ public class CrawlerManager
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}*/
+		
 		System.out.println("[CrawlerManager]: Pagina root scaricata dai browser");
 		NavigationStep step=computeManager.computeR(rootBM, rootBUT);
 		//IDelta delta = new DeltaSimple(rootBM, rootBUT);

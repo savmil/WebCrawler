@@ -18,6 +18,16 @@ public class ComputeManager {
 	}
 	public void compute(Element element,Hashtable<String,TriggerResult> surfResult){
 		
+		
+		String resultBM = surfResult.get("[SurfManagerThreadChrome]").getResult();
+		boolean isErrorBM = surfResult.get("[SurfManagerThreadChrome]").getIsError();
+		String xpathBM=surfResult.get("[SurfManagerThreadChrome]").getXpath();
+		String resultBUT = surfResult.get("[SurfManagerThreadFirefox]").getResult();
+		boolean isErrorBUT = surfResult.get("[SurfManagerThreadFirefox]").getIsError();
+		String xpathBUT=surfResult.get("[SurfManagerThreadFirefox]").getXpath();
+		
+		element.setXPath(xpathBM);
+		
 		NavigationStep step = new NavigationStep(element);
 		
 		// recupero parametri
@@ -27,22 +37,16 @@ public class ComputeManager {
 		String resultBUT = surfResult.get(1).getResult();
 		boolean isErrorBUT = surfResult.get(1).getIsError();
 		*/
-		String resultBM = surfResult.get("[SurfManagerThreadChrome]").getResult();
-		boolean isErrorBM = surfResult.get("[SurfManagerThreadChrome]").getIsError();
-		String xpathBM=surfResult.get("[SurfManagerThreadChrome]").getXpath();
-		String resultBUT = surfResult.get("[SurfManagerThreadFirefox]").getResult();
-		boolean isErrorBUT = surfResult.get("[SurfManagerThreadFirefox]").getIsError();
-		String xpathBUT=surfResult.get("[SurfManagerThreadFirefox]").getXpath();
+		
 		//System.out.println("errore 1 \r"+resultBM);
 		//System.out.println("errore 2 \r"+resultBUT);
+		
 		if(!isErrorBM && !isErrorBUT){
 			VisitedPage PageBM = new VisitedPageBM(xpathBM,resultBM);
 			VisitedPage PageBUT = new VisitedPageBUT(xpathBUT,resultBUT);
 			IDelta delta = new DeltaSimple(PageBM, PageBUT);
 			delta.computeDelta(PageBM, PageBUT);
-			
 			step.setDelta(delta);	//settando delta associo anche le pagine al passo
-			element.setXPath(xpathBM);
 			System.out.println("[ComputeManager]: passo di navigazione creato -> ");
 			System.out.println("	Elemento -> " + element.getXPath());
 			System.out.println("	Delta -> " + step.getDelta().getDelta());

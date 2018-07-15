@@ -63,6 +63,7 @@ public abstract class BrowserDriver {
 		String result = null;
 		boolean isError = true;
 		TriggerResult tResult = null;
+		String xPath=null;
 		try{
 			List<WebElement> listEvent=null;
 			System.out.println(element.getClass().toString());
@@ -74,7 +75,7 @@ public abstract class BrowserDriver {
 			{
 				listEvent = driver.findElementsByTagName("button"); 
 			}
-			String xPath=generateXPATH(listEvent.get(element.getId()));
+			xPath=generateXPATH(listEvent.get(element.getId()));
 			listEvent.get(element.getId()).click();
 			
 			
@@ -91,7 +92,7 @@ public abstract class BrowserDriver {
 
 		}catch(Throwable e){
 			String stackTrace = e.toString();
-			tResult = new TriggerResult(stackTrace,isError,null);
+			tResult = new TriggerResult(stackTrace,isError,xPath);
 			return tResult;
 			//System.out.println("[BrowserDriver][trigger]: la stimolazione ha generato un'eccezione.");
 		}

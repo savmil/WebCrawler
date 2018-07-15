@@ -38,7 +38,7 @@ public class CrawlerManager
 		RootPage rootBUT = new RootPageBUT(rootURL);
 		ReloadManager reloadManager= new ReloadManager(driverBM, driverBUT);
 		//IPlanManager planManager = new PlanManager();
-		reloadManager.reload(rootURL,rootBM,rootBUT);
+		reloadManager.reload(rootBM,rootBUT);
 		ComputeManager computeManager = new ComputeManager();
 		
 		/*Thread workerBM = new ReloadThread(rootBM,driverBM);

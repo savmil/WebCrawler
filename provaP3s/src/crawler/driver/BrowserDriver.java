@@ -67,7 +67,13 @@ public abstract class BrowserDriver {
 		try{
 			List<WebElement> listEvent=null;
 			System.out.println(element.getClass().toString());
+<<<<<<< HEAD
 			if(element instanceof AnchorLink)
+=======
+			
+			// provare la condizione in quest'altra forma: (element instanceof AnchorLink)
+			if(element.getClass().toString().equals("class crawler.entity.AnchorLink"))
+>>>>>>> branch 'master' of https://github.com/savmil/WebCrawler.git
 			{
 				listEvent = driver.findElementsByTagName("a");
 			}
@@ -78,15 +84,12 @@ public abstract class BrowserDriver {
 			xPath=generateXPATH(listEvent.get(element.getId()));
 			listEvent.get(element.getId()).click();
 			
-			
 			driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
 			
 			result = driver.getPageSource();
 			//result = html2xml(result);
 			isError = false;
 			//System.out.println("[BrowserDriver][trigger]: evento scatenato con successo.");
-			
-			
 			
 			tResult = new TriggerResult(result,isError,xPath);
 
@@ -102,6 +105,7 @@ public abstract class BrowserDriver {
 		
 		
 	}
+	
 	private String generateXPATH(WebElement childElement) {
 		//System.out.println("inizio xpath");
 	    String xpath=new String();

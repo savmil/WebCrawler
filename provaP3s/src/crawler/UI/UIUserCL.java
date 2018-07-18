@@ -12,10 +12,4 @@ public class UIUserCL implements UIUser {
 
 	}
 
-	@Override
-	public void showReport() {
-		// TODO Auto-generated method stub
-
-	}
-
 }

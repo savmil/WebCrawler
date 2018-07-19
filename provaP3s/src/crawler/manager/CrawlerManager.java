@@ -12,6 +12,7 @@ import java.util.Hashtable;
 
 public class CrawlerManager 
 {
+	private IPlanManager planManager;
 	/***singleton***/
 	private static CrawlerManager instance;
 	
@@ -101,7 +102,7 @@ public class CrawlerManager
 		// il primo step non contiene alcun Elemento
 		
 		
-		PlanManager planManager = new PlanManager();
+		planManager = new PlanManager();
 		SurfManager surfManager = new SurfManager(driverBM,driverBUT);
 		
 		

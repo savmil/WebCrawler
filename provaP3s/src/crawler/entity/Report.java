@@ -9,6 +9,10 @@ public class Report {
 	public void addStep(NavigationStep step){
 		steps.add(step);
 	}
+	public ArrayList<NavigationStep> returnStep()
+	{
+		return steps;
+	}
 	
 	//	pattern singleton
 	// ********************

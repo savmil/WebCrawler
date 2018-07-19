@@ -3,10 +3,17 @@ package crawler.entity;
 public class ErrorP {
 	
 	private String error;	//xmlDescr dell'errore
-
-	public ErrorP(String error) {
+	private int id;
+	public ErrorP(String error,int id) {
 		super();
 		this.error = error;
+		this.id=id;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 	public String getError() {
 		return error;

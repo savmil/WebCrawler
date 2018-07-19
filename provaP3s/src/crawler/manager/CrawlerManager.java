@@ -3,7 +3,11 @@ package crawler.manager;
 import crawler.driver.*;
 import crawler.entity.pages.*;
 import crawler.entity.*;
+import crawler.entity.delta.IDelta;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Hashtable;
 
 public class CrawlerManager 
@@ -20,12 +24,46 @@ public class CrawlerManager
 		return instance; 
 	}
 	/****/
-	public void startTest(String rootURL,int nStep){
+	public void startTest(String rootURL,int nStep)
+	{
 		
 		BrowserDriver driverBM =  new BrowserDriverChrome();
 		BrowserDriver driverBUT = new BrowserDriverFirefox();
 		System.out.println("[CrawlerManager]: DriverChrome e DriverFirefox instanziati");
-		
+		File filebut = new File("BUT");
+        if (!filebut.exists()) 
+        {
+            filebut.mkdir();
+        }
+        else
+        {
+        	String[]entries = filebut.list();
+        	for(String s: entries)
+        	{
+        	    File currentFile = new File(filebut.getPath(),s);
+        	    currentFile.delete();
+        	}
+        }
+        File filebm = new File("BM");
+        if (!filebm.exists()) 
+        {
+        	
+            filebm.mkdir();
+        }
+        else
+        {
+        	String[]entries = filebm.list();
+        	for(String s: entries)
+        	{
+        	    File currentFile = new File(filebm.getPath(),s);
+        	    currentFile.delete();
+        	}
+        }
+        File reportfile= new File("report.xml");
+        if (reportfile.exists())
+        {
+        	reportfile.delete();
+        }
 		/* Codice sequenziale
 		String xmlBM = driverBM.load(rootURL);
 		RootPage rootBM = new RootPageBM(rootURL,xmlBM);
@@ -79,6 +117,93 @@ public class CrawlerManager
 			computeManager.compute(element, results);
 		}
 		
+		try
+		{
+			Report report =Report.getInstance();
+			PrintWriter reportf = new PrintWriter ("report.xml");
+			for (int i=1;i<report.returnStep().size();i++)
+			{
+				System.out.println(report.returnStep().size());
+				NavigationStep step=report.returnStep().get(i);
+				IDelta delta=step.getDelta();
+				if(delta!=null)
+				{
+					reportf.write("step"+delta.getP1().getId());
+					reportf.write('\r');
+					reportf.write('\r');
+					reportf.write("Xpath");
+					reportf.write('\r');
+					reportf.write(step.getEvent().getXPath());
+					reportf.write('\r');
+					reportf.write("Delta");
+					reportf.write('\r');
+					reportf.write(Double.toString(delta.getDelta()));
+					reportf.write('\r');
+					reportf.write("BM");
+					reportf.write('\r');
+					reportf.write(delta.getP1().getId()+".xml");
+					reportf.write('\r');
+					reportf.write("Delta");
+					reportf.write('\r');
+					reportf.write(Double.toString(delta.getDelta()));
+					reportf.write('\r');
+					reportf.write("BUT");
+					reportf.write('\r');
+					reportf.write(delta.getP2().getId()+".xml");
+					reportf.write('\r');
+					//reportf.write(delta.ge);
+					//delta
+				}
+				else if(step.getErrorBM()!=null && step.getErrorBUT()==null )
+				{
+					reportf.write("step"+step.getRightPage().getId());
+					reportf.write('\r');
+					reportf.write('\r');
+					reportf.write("erroreBM");
+					reportf.write('\r');
+					reportf.write(step.getErrorBM().getId()+".xml");
+					reportf.write('\r');
+					reportf.write("BUT");
+					reportf.write('\r');
+					reportf.write(step.getRightPage().getId()+".xml");
+					reportf.write('\r');
+				}
+				else if(step.getErrorBUT()!=null && step.getErrorBM()==null)
+				{
+					reportf.write("step"+step.getRightPage().getId());
+					reportf.write('\r');
+					reportf.write('\r');
+					reportf.write("erroreBUT");
+					reportf.write('\r');
+					reportf.write(step.getErrorBUT().getId()+".xml");
+					reportf.write('\r');
+					reportf.write("BM");
+					reportf.write('\r');
+					reportf.write(step.getRightPage().getId()+".xml");
+					reportf.write('\r');
+				}
+				else if(step.getErrorBUT()!=null && step.getErrorBM()!=null)
+				{
+					reportf.write("step"+step.getErrorBM().getId());
+					reportf.write('\r');
+					reportf.write('\r');
+					reportf.write("erroreBUT");
+					reportf.write('\r');
+					reportf.write(step.getErrorBUT().getId()+".xml");
+					reportf.write('\r');
+					reportf.write("erroreBM");
+					reportf.write('\r');
+					reportf.write(step.getErrorBM().getId()+".xml");
+					reportf.write('\r');
+				}
+				
+			}
+			reportf.close();
+		}
+		catch(FileNotFoundException e)
+		{
+			e.printStackTrace();
+		}
 		driverBM.closeDriver();
 		driverBUT.closeDriver();
 		

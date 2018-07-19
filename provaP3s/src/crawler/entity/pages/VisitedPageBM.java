@@ -6,8 +6,8 @@ public class VisitedPageBM extends VisitedPage{
 		super(url);
 		// TODO Auto-generated constructor stub
 	}
-	public VisitedPageBM(String url, String xmlDescr) {
-		super(url,xmlDescr);
+	public VisitedPageBM(String url, String xmlDescr,int id) {
+		super(url,xmlDescr,id);
 	}
 
 }

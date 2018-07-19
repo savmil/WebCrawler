@@ -23,13 +23,10 @@ public class SurfManagerThread extends Thread{
 		
 		TriggerResult surfresult = driver.trigger(element);
 		//System.out.println("Trigger"+surfresult.getXpath());
-		if(surfresult.getIsError())
-		{
-			XmlConverter converter =new XmlConverter();
-			String XMLerror=converter.string2xml(surfresult.getResult());
-			surfresult.setResult(XMLerror);
-		}
-		else
+		XmlConverter converter =new XmlConverter();
+		String XMLerror=converter.string2xml(surfresult.getResult());
+		surfresult.setResult(XMLerror);
+		if(!surfresult.getIsError())
 		{
 			System.out.println(this.getName() + ": Elemento triggerato sul browser");
 		}

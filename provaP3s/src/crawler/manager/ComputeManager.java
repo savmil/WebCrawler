@@ -13,9 +13,10 @@ import java.util.Hashtable;
 
 public class ComputeManager {
 	private int id=0;
+	private IDelta delta=null;
 	public void compute(RootPage rootBM,RootPage rootBUT)// per noi va bene perchè sicuramente le abbiamo queste due pagine
 	{
-		IDelta delta = new DeltaSimple(rootBM, rootBUT);
+		delta = new DeltaSimple(rootBM, rootBUT);
 		delta.computeDelta(rootBM, rootBUT);
 		NavigationStep step = new NavigationStep(delta);
 		Report report = Report.getInstance();

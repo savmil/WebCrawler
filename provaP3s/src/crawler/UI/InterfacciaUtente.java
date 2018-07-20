@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import crawler.manager.CrawlerManager;
+import crawler.crawlerLogic.manager.CrawlerManager;
 
 import javax.swing.BoxLayout;
 import javax.swing.JTextField;

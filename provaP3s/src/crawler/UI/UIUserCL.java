@@ -1,6 +1,6 @@
 package crawler.UI;
 
-import crawler.manager.CrawlerManager;
+import crawler.crawlerLogic.manager.CrawlerManager;
 
 public class UIUserCL implements UIUser {
 

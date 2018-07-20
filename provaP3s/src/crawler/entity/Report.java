@@ -9,7 +9,7 @@ public class Report {
 	public void addStep(NavigationStep step){
 		steps.add(step);
 	}
-	public ArrayList<NavigationStep> returnStep()
+	public ArrayList<NavigationStep> getSteps()
 	{
 		return steps;
 	}

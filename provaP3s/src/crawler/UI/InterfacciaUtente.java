@@ -22,6 +22,10 @@ import javax.swing.JTextArea;
 import javax.swing.JFormattedTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextPane;
+import java.awt.Color;
+import javax.swing.UIManager;
+import java.awt.Font;
 
 public class InterfacciaUtente extends JFrame implements UIUser {
 
@@ -49,7 +53,7 @@ public class InterfacciaUtente extends JFrame implements UIUser {
 	 */
 	public InterfacciaUtente() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 275);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -57,40 +61,46 @@ public class InterfacciaUtente extends JFrame implements UIUser {
 		contentPane.setLayout(sl_contentPane);
 		
 		textField_1 = new JTextField();
-		sl_contentPane.putConstraint(SpringLayout.NORTH, textField_1, 115, SpringLayout.NORTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.WEST, textField_1, 10, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, textField_1, 43, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, textField_1, 140, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, textField_1, -15, SpringLayout.EAST, contentPane);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
-		JButton btnNewButton = new JButton("New button");
+		JButton btnNewButton = new JButton("START");
+		sl_contentPane.putConstraint(SpringLayout.WEST, btnNewButton, 155, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, btnNewButton, -132, SpringLayout.EAST, contentPane);
+		btnNewButton.setFont(new Font("Microsoft YaHei UI Light", Font.PLAIN, 20));
+		btnNewButton.setBackground(UIManager.getColor("Button.highlight"));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				startTest(textField_1.getText(), Integer.parseInt(textField.getText()));
 			}
 		});
-		
-		sl_contentPane.putConstraint(SpringLayout.NORTH, btnNewButton, -1, SpringLayout.NORTH, textField_1);
-		sl_contentPane.putConstraint(SpringLayout.WEST, btnNewButton, 131, SpringLayout.WEST, contentPane);
 		contentPane.add(btnNewButton);
 		
 		textField = new JTextField();
-		sl_contentPane.putConstraint(SpringLayout.EAST, btnNewButton, -6, SpringLayout.WEST, textField);
-		sl_contentPane.putConstraint(SpringLayout.NORTH, textField, 0, SpringLayout.NORTH, textField_1);
-		sl_contentPane.putConstraint(SpringLayout.WEST, textField, 272, SpringLayout.WEST, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.EAST, textField, -10, SpringLayout.EAST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, btnNewButton, 38, SpringLayout.SOUTH, textField);
+		sl_contentPane.putConstraint(SpringLayout.EAST, textField, -15, SpringLayout.EAST, contentPane);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		JFormattedTextField frmtdtxtfldInterfaccia = new JFormattedTextField();
-		sl_contentPane.putConstraint(SpringLayout.SOUTH, frmtdtxtfldInterfaccia, -1, SpringLayout.NORTH, textField);
-		sl_contentPane.putConstraint(SpringLayout.EAST, frmtdtxtfldInterfaccia, -50, SpringLayout.EAST, contentPane);
-		frmtdtxtfldInterfaccia.setText("interfaccia");
+		JTextArea frmtdtxtfldInterfaccia = new JTextArea();
+		sl_contentPane.putConstraint(SpringLayout.WEST, frmtdtxtfldInterfaccia, 25, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, textField, 1, SpringLayout.NORTH, frmtdtxtfldInterfaccia);
+		sl_contentPane.putConstraint(SpringLayout.WEST, textField, 6, SpringLayout.EAST, frmtdtxtfldInterfaccia);
+		frmtdtxtfldInterfaccia.setFont(new Font("Microsoft YaHei UI Light", Font.PLAIN, 14));
+		frmtdtxtfldInterfaccia.setBackground(UIManager.getColor("Button.background"));
+		frmtdtxtfldInterfaccia.setText("Numero di passi:");
 		contentPane.add(frmtdtxtfldInterfaccia);
 		
-		JFormattedTextField frmtdtxtfldSito = new JFormattedTextField();
-		sl_contentPane.putConstraint(SpringLayout.NORTH, frmtdtxtfldSito, 0, SpringLayout.NORTH, frmtdtxtfldInterfaccia);
-		sl_contentPane.putConstraint(SpringLayout.WEST, frmtdtxtfldSito, 46, SpringLayout.WEST, contentPane);
-		frmtdtxtfldSito.setText("sito");
+		JTextArea frmtdtxtfldSito = new JTextArea();
+		sl_contentPane.putConstraint(SpringLayout.NORTH, frmtdtxtfldInterfaccia, 23, SpringLayout.SOUTH, frmtdtxtfldSito);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, frmtdtxtfldSito, -2, SpringLayout.NORTH, textField_1);
+		sl_contentPane.putConstraint(SpringLayout.EAST, frmtdtxtfldSito, -6, SpringLayout.WEST, textField_1);
+		frmtdtxtfldSito.setBackground(UIManager.getColor("Button.background"));
+		frmtdtxtfldSito.setFont(new Font("Microsoft YaHei UI Light", Font.PLAIN, 14));
+		frmtdtxtfldSito.setText("URL:");
 		contentPane.add(frmtdtxtfldSito);
 	}
 	public void startTest(String rootURL, int nStep) {

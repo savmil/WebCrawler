@@ -13,7 +13,7 @@ public class ReloadManager {
 		this.driverBM = driverBM;
 	}
 	
-	void reload(RootPage rootBM,RootPage rootBUT){
+	public void reload(RootPage rootBM,RootPage rootBUT){
 		System.out.println("[ReloadManager]: Start reload");
 		Thread workerBM = new ReloadThread(rootBM,driverBM);
 		workerBM.setName("[ReloadManagerThreadChrome]");

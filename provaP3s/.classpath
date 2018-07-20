@@ -15,5 +15,6 @@
 	<classpathentry kind="lib" path="selenium/libs/okhttp-3.9.1.jar"/>
 	<classpathentry kind="lib" path="selenium/libs/okio-1.13.0.jar"/>
 	<classpathentry kind="lib" path="jsoup/jsoup-1.11.3.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

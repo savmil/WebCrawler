@@ -2,11 +2,11 @@ package crawler.crawlerLogic.entity;
 
 public class ErrorP {
 	
-	private String error;	//xmlDescr dell'errore
+	private String Exception;	//xmlDescr dell'errore
 	private int id;
-	public ErrorP(String error,int id) {
+	public ErrorP(String Exception,int id) {
 		super();
-		this.error = error;
+		this.Exception = Exception;
 		this.id=id;
 	}
 	public int getId() {
@@ -16,10 +16,10 @@ public class ErrorP {
 		this.id = id;
 	}
 	public String getError() {
-		return error;
+		return Exception;
 	}
 
 	public void setError(String error) {
-		this.error = error;
+		this.Exception = error;
 	}	
 }

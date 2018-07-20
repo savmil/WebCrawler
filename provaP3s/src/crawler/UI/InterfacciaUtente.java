@@ -36,23 +36,18 @@ public class InterfacciaUtente extends JFrame implements UIUser {
 	/**
 	 * Launch the application.
 	 */
-	public void createFrame()
-	{
+	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 						frame = new InterfacciaUtente();
 						frame.setVisible(true);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
-	}
-	public static void main(String[] args) 
-	{
-		frame = new InterfacciaUtente();
-		frame.createFrame();
 	}
 
 	/**
@@ -83,7 +78,6 @@ public class InterfacciaUtente extends JFrame implements UIUser {
 			public void actionPerformed(ActionEvent e) {
 				startTest(textField_1.getText(), Integer.parseInt(textField.getText()));
 				frame.dispose();
-				frame.createFrame();
 			}
 		});
 		contentPane.add(btnNewButton);

@@ -32,20 +32,27 @@ public class InterfacciaUtente extends JFrame implements UIUser {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
+	private static InterfacciaUtente frame;
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public void createFrame()
+	{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					InterfacciaUtente frame = new InterfacciaUtente();
-					frame.setVisible(true);
+						frame = new InterfacciaUtente();
+						frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
+	}
+	public static void main(String[] args) 
+	{
+		frame = new InterfacciaUtente();
+		frame.createFrame();
 	}
 
 	/**
@@ -75,6 +82,8 @@ public class InterfacciaUtente extends JFrame implements UIUser {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				startTest(textField_1.getText(), Integer.parseInt(textField.getText()));
+				frame.dispose();
+				frame.createFrame();
 			}
 		});
 		contentPane.add(btnNewButton);
@@ -106,8 +115,7 @@ public class InterfacciaUtente extends JFrame implements UIUser {
 	public void startTest(String rootURL, int nStep) {
 		
 		CrawlerManager crawler=CrawlerManager.getInstance();			
-				System.out.println("qui");
-				crawler.startTest(rootURL, nStep);
+		crawler.startTest(rootURL, nStep);
 			
 
 	}

@@ -124,6 +124,7 @@ public class CrawlerManager
 			PrintWriter reportf = new PrintWriter ("report.xml");
 			for (int i=1;i<report.getSteps().size();i++)
 			{
+				System.out.println(report.getSteps().size());
 				NavigationStep step=report.getSteps().get(i);
 				IDelta delta=step.getDelta();
 				if(delta!=null)

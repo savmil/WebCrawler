@@ -47,8 +47,8 @@ public class ReloadManagerTest {
 		}
 		catch (Throwable e) {
 			
-		}
-		fail(" la pagina non doveva essere aperta");
+			fail(" la pagina non doveva essere aperta");
+	}
 		driverBM.closeDriver();
 		driverBUT.closeDriver();
 	}

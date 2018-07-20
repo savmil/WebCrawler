@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="styles/app-f7298c1e.css" />
  </head>
  <body rotate="">
-  <div class="scroll-top-wrapper">
+  <div class="scroll-top-wrapper" style="display: none;">
    <span class="scroll-top-inner"><i class="fa fa-2x fa-arrow-circle-up"></i></span>
   </div>
   <!--[if lt IE 10]>
@@ -34,13 +34,13 @@
        <h1 style="font-size: 1em; line-height: 1.4em; margin-top: 0px;" class="ng-binding">universita' degli studi di napoli<br />federico ii<br />docenti</h1>
       </div>
       <div class="navbar-header">
-       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="true"><span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button>
+       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button>
       </div>
      </div>
     </div>
     <div class="row whiteRow">
      <div>
-      <div class="navbar-collapse navbar-right collapsing" id="bs-example-navbar-collapse-1" aria-expanded="true" style="height: 45px;">
+      <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
        <ul class="nav navbar-nav">
         <li><a tabindex="0" data-toggle="collapse" aria-label="CERCA" data-target=".navbar-collapse" href="/#/search" translate="navbar.search" class="ng-scope">CERCA</a></li>
         <li><a aria-label="ACCESSO DOCENTI" data-target=".navbar-collapse" href="/webdocenti/login/login.do" translate="navbar.professorAccess" class="ng-scope">ACCESSO DOCENTI</a></li>
@@ -58,20 +58,25 @@
   </ng-include>
   <!-- uiView:  -->
   <div class="container-fluid ng-scope" ui-view="" id="xd-content">
-   <!-- uiView:  -->
-   <div ui-view="" class="ng-scope">
-    <div class="container-fluid home_bkg ng-scope">
-     <div class="row search_input">
-      <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4">
-       <label id="searchInputLabel" for="searchInput" class="ng-binding">Ricerca docente per cognome/nome o insegnamento</label>
-       <form onload="searchController.acf()" ng-submit="searchController.search()" class="ng-pristine ng-valid">
-        <div class="input-group">
-         <input id="searchInput" aria-labelledby="searchInputLabel" ng-model="searchController.inputSearch" type="text" class="form-control ng-pristine ng-valid ng-animate ng-untouched-remove ng-touched-add ng-touched ng-untouched-remove-active ng-touched-add-active" autofocus="" aria-invalid="false" /> 
-         <span class="input-group-btn"><button ng-click="searchController.search()" class="btn btn-default ng-binding" role="button" aria-label="Cerca" type="button">Cerca</button></span>
-        </div>
-        <span ng-show="searchController.showAlertMinChars()" class="ng-binding ng-hide" aria-hidden="true">Inserire almeno 3 caratteri</span>
-       </form>
-      </div>
+   <div class="container-fluid ng-scope">
+    <div class="row container-fixed ng-scope" ng-controller="SiteMapCtrl as siteMapCtrl">
+     <span class="siteMapTitle ng-scope" translate="site.map.title">Mappa del sito</span>
+     <div class="tree">
+      <ul>
+       <li><a href="#!/">docenti.unina.it</a>
+        <ul>
+         <li><a ui-sref="search.input" aria-label="CERCA" class="ng-binding" href="#!/search">CERCA</a>
+          <ul ng-show="siteMapCtrl.isProfessorSelected()" aria-hidden="true" class="ng-hide">
+           <li><a href="#" class="ng-binding">{{siteMapCtrl.getProfessorName()}}</a>
+            <ul>
+             <!-- ngRepeat: module in siteMapCtrl.getModules() -->
+            </ul></li>
+          </ul></li>
+         <li><a href="/webdocenti/login/login.do" aria-label="ACCESSO DOCENTI" class="ng-binding">ACCESSO DOCENTI</a></li>
+         <li><a ui-sref="contacts" aria-label="CONTATTI" class="ng-binding" href="#!/contacts">CONTATTI</a></li>
+         <li><a ui-sref="accessibility" aria-label="ACCESSIBILITA'" class="ng-binding" href="#!/accessibility">ACCESSIBILITA'</a></li>
+        </ul></li>
+      </ul>
      </div>
     </div>
    </div>
@@ -136,7 +141,7 @@
 
 </script>
   <div id="ngProgress-container" class="ng-scope">
-   <div id="ngProgress" style="height: 4px; background-color: rgb(126, 195, 255); color: rgb(126, 195, 255); width: 100%; opacity: 0;"></div>
+   <div id="ngProgress" style="height: 4px; background-color: rgb(126, 195, 255); color: rgb(126, 195, 255); width: 100%; opacity: 1;"></div>
   </div>
  </body>
 </html>

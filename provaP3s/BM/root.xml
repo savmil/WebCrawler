@@ -136,7 +136,7 @@
 
 </script>
   <div id="ngProgress-container" class="ng-scope">
-   <div id="ngProgress" style="height: 4px; background-color: rgb(126, 195, 255); color: rgb(126, 195, 255); width: 100%; opacity: 1;"></div>
+   <div id="ngProgress" style="height: 4px; background-color: rgb(126, 195, 255); color: rgb(126, 195, 255); width: 0%; opacity: 0;"></div>
   </div>
  </body>
 </html>

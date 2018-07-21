@@ -11,11 +11,11 @@ public abstract class RootPage extends VisitedPage{
 	
 	public RootPage(String url) {
 		super(url);
-		elementList=new ArrayList<Element>();
+		//elementList=new ArrayList<Element>();
 	}
 	public RootPage(String url, String xmlDescr) {
 		super(url,xmlDescr);
-		elementList=new ArrayList<Element>();
+		//elementList=new ArrayList<Element>();
 	}
 	
 	public ArrayList<Element> getElements() {

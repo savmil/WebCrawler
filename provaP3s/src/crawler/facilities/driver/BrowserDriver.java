@@ -20,6 +20,7 @@ public abstract class BrowserDriver {
 	
 	public BrowserDriver(String driver_exe, String config){
 		System.setProperty(driver_exe, config);
+		this.driver = getDriver();
 	}
 	
 	// la funzione carica l'URL sul driver e restituisce l'xmlDescriptor (in formato stringa) della pagina
@@ -151,8 +152,7 @@ public abstract class BrowserDriver {
 		driver.quit();
 	}
 	
-	// la funzione riceve in ingresso lo stacktrace (in formato stringa) e restituisce
-	// la descrizione XML dello stacktrace (in formato stringa)
+	protected abstract RemoteWebDriver getDriver();
 	
 
 }

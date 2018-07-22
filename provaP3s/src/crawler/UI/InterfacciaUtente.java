@@ -95,6 +95,7 @@ public class InterfacciaUtente extends JFrame implements UIUser {
 		frmtdtxtfldInterfaccia.setFont(new Font("Microsoft YaHei UI Light", Font.PLAIN, 14));
 		frmtdtxtfldInterfaccia.setBackground(UIManager.getColor("Button.background"));
 		frmtdtxtfldInterfaccia.setText("Numero di passi:");
+		frmtdtxtfldInterfaccia.setEditable(false);
 		contentPane.add(frmtdtxtfldInterfaccia);
 		
 		JTextArea frmtdtxtfldSito = new JTextArea();
@@ -104,6 +105,7 @@ public class InterfacciaUtente extends JFrame implements UIUser {
 		frmtdtxtfldSito.setBackground(UIManager.getColor("Button.background"));
 		frmtdtxtfldSito.setFont(new Font("Microsoft YaHei UI Light", Font.PLAIN, 14));
 		frmtdtxtfldSito.setText("URL:");
+		frmtdtxtfldSito.setEditable(false);
 		contentPane.add(frmtdtxtfldSito);
 	}
 	public void startTest(String rootURL, int nStep) {

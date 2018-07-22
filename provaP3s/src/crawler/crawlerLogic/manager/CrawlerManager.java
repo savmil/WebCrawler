@@ -124,7 +124,6 @@ public class CrawlerManager
 			PrintWriter reportf = new PrintWriter ("report.xml");
 			for (int i=1;i<report.getSteps().size();i++)
 			{
-				System.out.println(report.getSteps().size());
 				NavigationStep step=report.getSteps().get(i);
 				IDelta delta=step.getDelta();
 				if(delta!=null)
@@ -136,21 +135,17 @@ public class CrawlerManager
 					reportf.write('\r');
 					reportf.write(step.getEvent().getXPath());
 					reportf.write('\r');
-					reportf.write("Delta");
-					reportf.write('\r');
-					reportf.write(Double.toString(delta.getDelta()));
-					reportf.write('\r');
 					reportf.write("BM");
 					reportf.write('\r');
 					reportf.write(delta.getP1().getId()+".xml");
 					reportf.write('\r');
-					reportf.write("Delta");
-					reportf.write('\r');
-					reportf.write(Double.toString(delta.getDelta()));
-					reportf.write('\r');
 					reportf.write("BUT");
 					reportf.write('\r');
 					reportf.write(delta.getP2().getId()+".xml");
+					reportf.write('\r');
+					reportf.write("Delta");
+					reportf.write('\r');
+					reportf.write(Double.toString(delta.getDelta()));
 					reportf.write('\r');
 					//reportf.write(delta.ge);
 					//delta

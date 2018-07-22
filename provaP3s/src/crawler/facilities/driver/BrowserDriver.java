@@ -66,7 +66,6 @@ public abstract class BrowserDriver {
 		String xPath=null;
 		try{
 			List<WebElement> listEvent=null;
-			System.out.println(element.getClass().toString());
 			if(element instanceof AnchorLink)
 
 			

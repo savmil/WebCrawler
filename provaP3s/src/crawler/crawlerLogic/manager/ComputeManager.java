@@ -79,8 +79,10 @@ public class ComputeManager {
 		if(!isErrorBM && !isErrorBUT){
 			System.out.println(resultBM);
 			
-			VisitedPage PageBM = new VisitedPageBM(xpathBM,resultBM,id);
-			VisitedPage PageBUT = new VisitedPageBUT(xpathBUT,resultBUT,id);
+			//VisitedPage PageBM = new VisitedPageBM(xpathBM,resultBM,id);
+			VisitedPage PageBM = new VisitedPage(xpathBM,resultBM,id);
+			//VisitedPage PageBUT = new VisitedPageBUT(xpathBUT,resultBUT,id);
+			VisitedPage PageBUT = new VisitedPage(xpathBUT,resultBUT,id);
 			IDelta delta = new DeltaSimple(PageBM, PageBUT);
 			delta.computeDelta(PageBM, PageBUT);
 			step.setDelta(delta);	//settando delta associo anche le pagine al passo
@@ -112,8 +114,9 @@ public class ComputeManager {
 		
 		if(isErrorBM && !isErrorBUT){
 			ErrorP errorBM = new ErrorP(resultBM,id);
-			VisitedPage PageBUT = new VisitedPageBUT(xpathBUT,resultBUT,id);
-			
+			//VisitedPage PageBUT = new VisitedPageBUT(xpathBUT,resultBUT,id);
+			VisitedPage PageBUT = new VisitedPage(xpathBUT,resultBUT,id);
+
 			step.setErrorBM(errorBM);
 			step.setRightPage(PageBUT);
 			element.setXPath(xpathBUT);
@@ -129,8 +132,9 @@ public class ComputeManager {
 		
 		if(!isErrorBM && isErrorBUT){
 			ErrorP errorBUT = new ErrorP(resultBUT,id);
-			VisitedPage PageBM = new VisitedPageBM(xpathBM,resultBM,id);
-			
+			//VisitedPage PageBM = new VisitedPageBM(xpathBM,resultBM,id);
+			VisitedPage PageBM = new VisitedPage(xpathBM,resultBM,id);
+
 			step.setErrorBUT(errorBUT);
 			step.setRightPage(PageBM);	
 			element.setXPath(xpathBM);

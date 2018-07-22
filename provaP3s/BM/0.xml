@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="styles/app-f7298c1e.css" />
  </head>
  <body rotate="">
-  <div class="scroll-top-wrapper" style="display: none;">
+  <div class="scroll-top-wrapper">
    <span class="scroll-top-inner"><i class="fa fa-2x fa-arrow-circle-up"></i></span>
   </div>
   <!--[if lt IE 10]>
@@ -34,13 +34,13 @@
        <h1 style="font-size: 1em; line-height: 1.4em; margin-top: 0px;" class="ng-binding">universita' degli studi di napoli<br />federico ii<br />docenti</h1>
       </div>
       <div class="navbar-header">
-       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button>
+       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="true"><span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button>
       </div>
      </div>
     </div>
     <div class="row whiteRow">
      <div>
-      <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+      <div class="navbar-collapse navbar-right collapsing" id="bs-example-navbar-collapse-1" aria-expanded="true" style="height: 45px;">
        <ul class="nav navbar-nav">
         <li><a tabindex="0" data-toggle="collapse" aria-label="CERCA" data-target=".navbar-collapse" href="/#/search" translate="navbar.search" class="ng-scope">CERCA</a></li>
         <li><a aria-label="ACCESSO DOCENTI" data-target=".navbar-collapse" href="/webdocenti/login/login.do" translate="navbar.professorAccess" class="ng-scope">ACCESSO DOCENTI</a></li>
@@ -58,22 +58,20 @@
   </ng-include>
   <!-- uiView:  -->
   <div class="container-fluid ng-scope" ui-view="" id="xd-content">
-   <div class="container-fluid ng-scope">
-    <div class="row container-fixed">
-     <span class="accessibilityTitle ng-binding">Accessibilita':</span>
-     <div>
-      <span class="ng-binding">Questo portale web è stato progettato seguendo le indicazioni della Legge 4 del 2004 "Legge Stanca", Legge sulle "Disposizioni per favorire l'accesso dei soggetti disabili agli strumenti informatici". </span>
-      <ins><a ng-href="http://www.pubbliaccesso.it/normative/legge_20040109_n4.htm" class="ng-binding" href="http://www.pubbliaccesso.it/normative/legge_20040109_n4.htm">Legge 4 del 2004</a></ins>
-      <br />
-      <span class="ng-binding">Relativamente alla Legge 4 del 2004, questo portale web rispetta le linee guida WCAG 2.0 di Livello AAA.</span> 
-      <span class="ng-binding">Inoltre si raccomanda il gestore di contenuti di tener conto della su mensionata Legge e adeguare i contenuti ad essa.</span>
-     </div>
-     <br />
-     <div>
-      <span><h4 class="ng-binding">Accessibilita' : Conformita' alla Legge Stanca.</h4></span>
-     </div>
-     <div>
-      <span class="ng-binding">Per adeguarsi agli standard internazionali il Ministro per le Innovazioni e le Tecnologie ha ritenuto necessario adeguare i criteri e i metodi per la verifica tecnica e requisiti di accessibilità della Legge Stanca del 2004 basandosi su quelle che sono le nuove linee guida redatte dal W3C (World Wide Web Consortium) nell’ambito del WAI (Web Accessibility Initiative) ovvero le WCAG 2.0. Le WCAG si basano su 4 principi: percepibilità, operabilità, comprensibilità e robustezza; per ogni principio sono definite delle linee guida, 12 in tutto. Per ogni linea guida sono definiti dei criteri di successo al fine di raggiungere gli obiettivi di accessibilità. I criteri sono utilizzati per valutare le conformità. Le conformità sono suddivise in 3 livelli A AA AAA. L’adeguamento in studio punta al rispetto delle linee guida WCAG 2.0 di Livello AAA.</span>
+   <!-- uiView:  -->
+   <div ui-view="" class="ng-scope">
+    <div class="container-fluid home_bkg ng-scope">
+     <div class="row search_input">
+      <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4">
+       <label id="searchInputLabel" for="searchInput" class="ng-binding">Ricerca docente per cognome/nome o insegnamento</label>
+       <form onload="searchController.acf()" ng-submit="searchController.search()" class="ng-pristine ng-valid">
+        <div class="input-group">
+         <input id="searchInput" aria-labelledby="searchInputLabel" ng-model="searchController.inputSearch" type="text" class="form-control ng-pristine ng-valid ng-animate ng-untouched-remove ng-touched-add ng-touched ng-untouched-remove-active ng-touched-add-active" autofocus="" aria-invalid="false" /> 
+         <span class="input-group-btn"><button ng-click="searchController.search()" class="btn btn-default ng-binding" role="button" aria-label="Cerca" type="button">Cerca</button></span>
+        </div>
+        <span ng-show="searchController.showAlertMinChars()" class="ng-binding ng-hide" aria-hidden="true">Inserire almeno 3 caratteri</span>
+       </form>
+      </div>
      </div>
     </div>
    </div>

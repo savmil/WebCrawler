@@ -1,5 +1,5 @@
 package crawler.crawlerLogic.entity.pages;
-
+/*
 public class VisitedPageBUT extends VisitedPage{
 	
 	public VisitedPageBUT(String url) {
@@ -9,3 +9,4 @@ public class VisitedPageBUT extends VisitedPage{
 		super(url,xmlDescr,id);
 	}
 }
+*/

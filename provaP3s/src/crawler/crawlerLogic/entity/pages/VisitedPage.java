@@ -1,6 +1,6 @@
 package crawler.crawlerLogic.entity.pages;
 
-public abstract class VisitedPage {
+public /*abstract */ class VisitedPage {
 	private String url;
 	private String xmlDescr;
 	private int id;

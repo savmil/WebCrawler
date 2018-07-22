@@ -1,5 +1,5 @@
 package crawler.crawlerLogic.entity.pages;
-
+/*
 public class VisitedPageBM extends VisitedPage{
 
 	public VisitedPageBM(String url) {
@@ -11,3 +11,4 @@ public class VisitedPageBM extends VisitedPage{
 	}
 
 }
+*/

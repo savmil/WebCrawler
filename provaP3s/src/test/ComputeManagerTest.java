@@ -12,8 +12,9 @@ import crawler.crawlerLogic.entity.AnchorLink;
 import crawler.crawlerLogic.entity.Element;
 import crawler.crawlerLogic.entity.NavigationStep;
 import crawler.crawlerLogic.entity.Report;
-import crawler.crawlerLogic.entity.pages.RootPageBM;
-import crawler.crawlerLogic.entity.pages.RootPageBUT;
+import crawler.crawlerLogic.entity.pages.RootPage;
+/*import crawler.crawlerLogic.entity.pages.RootPageBM;
+import crawler.crawlerLogic.entity.pages.RootPageBUT;*/
 import crawler.crawlerLogic.manager.ComputeManager;
 import crawler.facilities.driver.TriggerResult;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -22,7 +23,8 @@ public class ComputeManagerTest {
 	@Test
 	public void testComputeRootPageRootPageDelta0() {
 		ComputeManager computemanger=new ComputeManager();
-		RootPageBM rootBM=new RootPageBM("", "\r\n" + 
+		//RootPageBM rootBM=new RootPageBM("", "\r\n" + 
+		RootPage rootBM=new RootPage("", "\r\n" + 
 				"<!DOCTYPE html>\r\n" + 
 				"<html>\r\n" + 
 				"<!-- \r\n" + 
@@ -78,7 +80,9 @@ public class ComputeManagerTest {
 				"        </table>\r\n" + 
 				"    </body>\r\n" + 
 				"</html>\r\n");
-		RootPageBUT rootBUT=new RootPageBUT("","\r\n" + 
+		
+		//RootPageBUT rootBUT=new RootPageBUT("", "\r\n" + 
+		RootPage rootBUT=new RootPage("","\r\n" + 
 				"<!DOCTYPE html>\r\n" + 
 				"<html>\r\n" + 
 				"<!-- \r\n" + 

@@ -5,8 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import crawler.crawlerLogic.entity.pages.RootPageBM;
-import crawler.crawlerLogic.entity.pages.RootPageBUT;
+import crawler.crawlerLogic.entity.pages.*;
 import crawler.crawlerLogic.manager.ReloadManager;
 import crawler.facilities.driver.BrowserDriver;
 import crawler.facilities.driver.BrowserDriverChrome;
@@ -19,8 +18,10 @@ public class ReloadManagerTest {
 		BrowserDriver driverBM=new BrowserDriverChrome();
 		BrowserDriver driverBUT=new BrowserDriverFirefox();
 		ReloadManager reloadManager =new ReloadManager(driverBM,driverBUT);
-		RootPageBM rootBM=new RootPageBM("http://www.docenti.unina.it");
-		RootPageBUT rootBUT=new RootPageBUT("http://www.docenti.unina.it");
+		/*RootPageBM rootBM=new RootPageBM("http://www.docenti.unina.it");
+		RootPageBUT rootBUT=new RootPageBUT("http://www.docenti.unina.it");*/
+		RootPage rootBM=new RootPage("http://www.docenti.unina.it");
+		RootPage rootBUT=new RootPage("http://www.docenti.unina.it");
 		try
 		{
 			reloadManager.reload(rootBM, rootBUT);
@@ -38,8 +39,10 @@ public class ReloadManagerTest {
 		BrowserDriver driverBM=new BrowserDriverChrome();
 		BrowserDriver driverBUT=new BrowserDriverFirefox();
 		ReloadManager reloadManager =new ReloadManager(driverBM,driverBUT);
-		RootPageBM rootBM=new RootPageBM("http://");
-		RootPageBUT rootBUT=new RootPageBUT("http://");
+		/*RootPageBM rootBM=new RootPageBM("http://");
+		RootPageBUT rootBUT=new RootPageBUT("http://");*/
+		RootPage rootBM=new RootPage("http://");
+		RootPage rootBUT=new RootPage("http://");
 		try
 		{
 			reloadManager.reload(rootBM, rootBUT);

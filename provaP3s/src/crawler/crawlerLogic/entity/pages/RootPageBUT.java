@@ -1,5 +1,5 @@
 package crawler.crawlerLogic.entity.pages;
-
+/*
 public class RootPageBUT extends RootPage{
 
 	public RootPageBUT(String url) {
@@ -8,4 +8,4 @@ public class RootPageBUT extends RootPage{
 	public RootPageBUT(String url, String xmlDescr) {
 		super(url,xmlDescr);	
 	}
-}
+}*/

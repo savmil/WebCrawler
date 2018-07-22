@@ -73,8 +73,10 @@ public class CrawlerManager
 		RootPage rootBUT = new RootPageBUT(rootURL,xmlBUT);
 		*/
 		
-		RootPage rootBM = new RootPageBM(rootURL);
-		RootPage rootBUT = new RootPageBUT(rootURL);
+		/*RootPage rootBM = new RootPageBM(rootURL);
+		RootPage rootBUT = new RootPageBUT(rootURL);*/
+        RootPage rootBM = new RootPage(rootURL);
+        RootPage rootBUT = new RootPage(rootURL);
 		ReloadManager reloadManager= new ReloadManager(driverBM, driverBUT);
 		//IPlanManager planManager = new PlanManager();
 		reloadManager.reload(rootBM,rootBUT);

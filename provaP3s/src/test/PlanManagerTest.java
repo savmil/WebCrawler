@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 import crawler.crawlerLogic.entity.Element;
-import crawler.crawlerLogic.entity.pages.RootPageBM;
+import crawler.crawlerLogic.entity.pages.RootPage;
 import crawler.crawlerLogic.manager.PlanManager;
 
 public class PlanManagerTest {
@@ -15,7 +15,8 @@ public class PlanManagerTest {
 	public void testPlanNoElement() 
 	{
 		PlanManager plan =new PlanManager();
-		RootPageBM root= new RootPageBM("test");
+		//RootPageBM root= new RootPageBM("test");
+		RootPage root= new RootPage("test");
 		Element element =plan.plan(root);
 		assertNull(element.getXPath());
 	}
@@ -23,7 +24,8 @@ public class PlanManagerTest {
 	public void testPlanWithElement()
 	{
 		PlanManager plan =new PlanManager();
-		RootPageBM root= new RootPageBM("test");
+		//RootPageBM root= new RootPageBM("test");
+		RootPage root= new RootPage("test");
 		ArrayList<Element> elements=new ArrayList<Element>();
 		root.setElements(elements);
 		Element e=new Element();

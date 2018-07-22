@@ -9,8 +9,7 @@ import org.junit.Test;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import crawler.crawlerLogic.entity.Element;
-import crawler.crawlerLogic.entity.pages.RootPageBM;
-import crawler.crawlerLogic.entity.pages.RootPageBUT;
+import crawler.crawlerLogic.entity.pages.RootPage;
 import crawler.crawlerLogic.manager.PlanManager;
 import crawler.crawlerLogic.manager.ReloadManager;
 import crawler.crawlerLogic.manager.SurfManager;
@@ -29,8 +28,10 @@ public class SurfManagerTest {
 		benchmark=new BrowserDriverChrome();
 		under_test=new BrowserDriverFirefox();
 		ReloadManager reloadManager=new ReloadManager(benchmark, under_test);
-		RootPageBM rootBM=new RootPageBM("http://tinytuba.com/");
-		RootPageBUT rootBUT=new RootPageBUT("http://tinytuba.com/");
+		/*RootPageBM rootBM=new RootPageBM("http://tinytuba.com/");
+		RootPageBUT rootBUT=new RootPageBUT("http://tinytuba.com/");*/
+		RootPage rootBM=new RootPage("http://tinytuba.com/");
+		RootPage rootBUT=new RootPage("http://tinytuba.com/");
 		reloadManager.reload(rootBM,rootBUT);
 		PlanManager planManager=new PlanManager();
 		element=planManager.plan(rootBM);

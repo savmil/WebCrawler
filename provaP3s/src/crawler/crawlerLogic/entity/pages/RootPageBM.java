@@ -1,5 +1,5 @@
 package crawler.crawlerLogic.entity.pages;
-
+/*
 public class RootPageBM extends RootPage{
 
 	public RootPageBM(String url) {
@@ -9,4 +9,4 @@ public class RootPageBM extends RootPage{
 		super(url,xmlDescr);	
 	}
 
-}
+}*/

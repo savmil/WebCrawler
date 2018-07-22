@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import crawler.crawlerLogic.entity.*;
 
 
-public abstract class RootPage extends VisitedPage{
+public /*abstract*/ class RootPage extends VisitedPage{
 	
 	private ArrayList<Element> elementList;
 	

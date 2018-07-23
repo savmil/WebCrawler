@@ -26,11 +26,11 @@ public class RootPage extends VisitedPage{
 	public void setElements(ArrayList<Element> elements) {
 		this.elementList = elements;
 	}
-	public void saveVisitedPage(String directory)
+	public void saveVisitedPage(String dir)
 	{
 		try
 		{
-			PrintWriter rootPage = new PrintWriter (directory+"\\root.xml");
+			PrintWriter rootPage = new PrintWriter (dir+"\\root.xml");
 			rootPage.write(this.getXmlDescr());
 			rootPage.close();
 		}

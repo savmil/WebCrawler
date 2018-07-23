@@ -65,7 +65,7 @@
        <label id="searchInputLabel" for="searchInput" class="ng-binding">Ricerca docente per cognome/nome o insegnamento</label>
        <form onload="searchController.acf()" ng-submit="searchController.search()" class="ng-pristine ng-valid">
         <div class="input-group">
-         <input id="searchInput" aria-labelledby="searchInputLabel" ng-model="searchController.inputSearch" class="form-control ng-pristine ng-untouched ng-valid" autofocus="" aria-invalid="false" type="text" /> 
+         <input id="searchInput" aria-labelledby="searchInputLabel" ng-model="searchController.inputSearch" class="form-control ng-pristine ng-valid ng-touched" autofocus="" aria-invalid="false" type="text" /> 
          <span class="input-group-btn"><button ng-click="searchController.search()" class="btn btn-default ng-binding" role="button" aria-label="Cerca" type="button">Cerca</button></span>
         </div>
         <span ng-show="searchController.showAlertMinChars()" class="ng-binding ng-hide" aria-hidden="true">Inserire almeno 3 caratteri</span>

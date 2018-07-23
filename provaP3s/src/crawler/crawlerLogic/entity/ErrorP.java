@@ -25,11 +25,11 @@ public class ErrorP {
 	public void setError(String error) {
 		this.Exception = error;
 	}	
-	public void saveErrorP(String directory,int id)
+	public void saveErrorP(String dir,int id)
 	{
 		try
 		{
-			PrintWriter visitedPage = new PrintWriter (directory+"\\"+id+".xml");
+			PrintWriter visitedPage = new PrintWriter (dir+"\\"+id+".xml");
 			visitedPage.write(getError());
 			visitedPage.close();
 		}

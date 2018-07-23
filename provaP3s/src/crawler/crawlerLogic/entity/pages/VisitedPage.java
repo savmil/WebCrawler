@@ -41,11 +41,11 @@ public class VisitedPage {
 	public void setXmlDescr(String xmlDescr) {
 		this.xmlDescr = xmlDescr;
 	}
-	public void saveVisitedPage(String directory,int id)
+	public void saveVisitedPage(String dir,int id)
 	{
 		try
 		{
-			PrintWriter visitedPage = new PrintWriter (directory+"\\"+id+".xml");
+			PrintWriter visitedPage = new PrintWriter (dir+"\\"+id+".xml");
 			visitedPage.write(this.getXmlDescr());
 			visitedPage.close();
 		}

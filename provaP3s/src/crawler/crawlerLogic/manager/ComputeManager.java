@@ -39,6 +39,7 @@ public class ComputeManager {
 		System.out.println("[ComputeManager]: Aggiunto il passo iniziale al report");
 		
 	}
+	
 	public void compute(Element element,Hashtable<String,TriggerResult> surfResult){
 		
 		

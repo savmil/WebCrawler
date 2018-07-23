@@ -23,10 +23,7 @@ public class SurfManagerThread extends Thread{
 	public void run(){
 		
 		TriggerResult surfresult = driver.trigger(element);
-		//System.out.println("Trigger"+surfresult.getXpath());
 		XmlConverter converter =new XmlConverter();
-		
-		//String XMLerror=converter.string2xml(surfresult.getResult());
 		String XML=converter.string2xml(surfresult.getResult());
 
 		surfresult.setResult(XML);
@@ -35,9 +32,6 @@ public class SurfManagerThread extends Thread{
 			System.out.println(this.getName() + ": Elemento triggerato sul browser");
 		}
 		hs.put(this.getName(), surfresult);
-		/*synchronized(lis){
-			lis.add(surfresult);
-		}*/
 	}
 	
 }

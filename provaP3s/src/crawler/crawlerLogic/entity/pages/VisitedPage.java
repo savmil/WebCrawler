@@ -1,6 +1,9 @@
 package crawler.crawlerLogic.entity.pages;
 
-public /*abstract */ class VisitedPage {
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+
+public class VisitedPage {
 	private String url;
 	private String xmlDescr;
 	private int id;
@@ -37,6 +40,19 @@ public /*abstract */ class VisitedPage {
 	}
 	public void setXmlDescr(String xmlDescr) {
 		this.xmlDescr = xmlDescr;
+	}
+	public void saveVisitedPage(String directory,int id)
+	{
+		try
+		{
+			PrintWriter visitedPage = new PrintWriter (directory+"\\"+id+".xml");
+			visitedPage.write(this.getXmlDescr());
+			visitedPage.close();
+		}
+		catch(FileNotFoundException e)
+		{
+			e.printStackTrace();
+		}
 	}
 	
 	

@@ -7,8 +7,7 @@ public class Test {
 	public static void main(String args[]){
 		
 		UIUser ui = new UIUserCL();
-		//tinytuba.com
-		ui.startTest("http://www.ansa.it/", 1);
+		ui.startTest("http://www.docenti.unina.it/", 2);
 	}
 
 }

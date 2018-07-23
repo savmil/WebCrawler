@@ -23,7 +23,6 @@ public abstract class BrowserDriver {
 		this.driver = getDriver();
 	}
 	
-	// la funzione carica l'URL sul driver e restituisce l'xmlDescriptor (in formato stringa) della pagina
 	public HtmlData load(String url){
 		String HTMLPageSource = new String();
 		HtmlData htmlData=new HtmlData();
@@ -45,7 +44,6 @@ public abstract class BrowserDriver {
 			for (int i=0;i<=buttons.size();i++)
 			{
 				Element button=new Button();
-				//button.setXPath(generateXPATH(element, ""));
 				button.setId(i);
 				elementList.add(button);
 			}
@@ -68,10 +66,6 @@ public abstract class BrowserDriver {
 			List<WebElement> listEvent=null;
 			if(element instanceof AnchorLink)
 
-			
-			// provare la condizione in quest'altra forma: (element instanceof AnchorLink)
-			//if(element.getClass().toString().equals("class crawler.entity.AnchorLink"))
-
 			{
 				listEvent = driver.findElementsByTagName("a");
 			}
@@ -85,9 +79,7 @@ public abstract class BrowserDriver {
 			driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
 			
 			result = driver.getPageSource();
-			//result = html2xml(result);
 			isError = false;
-			//System.out.println("[BrowserDriver][trigger]: evento scatenato con successo.");
 			
 			tResult = new TriggerResult(result,isError,xPath);
 
@@ -95,7 +87,6 @@ public abstract class BrowserDriver {
 			String stackTrace = e.toString();
 			tResult = new TriggerResult(stackTrace,isError,xPath);
 			return tResult;
-			//System.out.println("[BrowserDriver][trigger]: la stimolazione ha generato un'eccezione.");
 		}
 		
 		return tResult;
@@ -105,25 +96,18 @@ public abstract class BrowserDriver {
 	}
 	
 	private String generateXPATH(WebElement childElement) {
-		//System.out.println("inizio xpath");
 	    String xpath=new String();
-	   /* if(childTag.equals("html")) {
-	        return "/html[1]"+current;
-	    }*/
 	    
 	    int count = 0;
 	    
 	    String childTag = childElement.getTagName();
-	    //System.out.println(childTag);
 	    while(!childTag.equals("html"))
 	    {
-	    	//System.out.println("inizio ciclo1");
 	    	int i=0;
 	    	WebElement parentElement = childElement.findElement(By.xpath("..")); 
 	 	    List<WebElement> childrenElements = parentElement.findElements(By.xpath("*"));
 	    	while((i<childrenElements.size() && !childElement.equals(childrenElements.get(i)))) 
 	    	{
-	    		//System.out.println("inizio ciclo2");
 	    		WebElement childrenElement = childrenElements.get(i);
 	    		String childrenElementTag = childrenElement.getTagName();
 	    		if(childTag.equals(childrenElementTag)) 
@@ -131,13 +115,8 @@ public abstract class BrowserDriver {
 	    			count++;
 	    		}
 	    		i++;
-	    		/*if(childElement.equals(childrenElement)) 
-	    		{
-	    			return generateXPATH(parentElement, "/" + childTag + "[" + count + "]"+current);
-	    		}*/
 	    	}
 	    	xpath="/" + childTag + "[" + count + "]"+xpath;
-	    	//System.out.println(xpath);
 	    	childElement=parentElement;
 	    	childTag=childElement.getTagName();
 	    }

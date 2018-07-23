@@ -1,6 +1,6 @@
 package crawler.UI;
 
-import java.awt.BorderLayout;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -9,21 +9,13 @@ import javax.swing.border.EmptyBorder;
 
 import crawler.crawlerLogic.manager.CrawlerManager;
 
-import javax.swing.BoxLayout;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import javax.swing.SpringLayout;
 import javax.swing.JTextArea;
-import javax.swing.JFormattedTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JTextPane;
-import java.awt.Color;
 import javax.swing.UIManager;
 import java.awt.Font;
 

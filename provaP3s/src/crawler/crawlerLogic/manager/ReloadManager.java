@@ -26,7 +26,7 @@ public class ReloadManager {
 			workerBM.join();
 			workerBUT.join();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		

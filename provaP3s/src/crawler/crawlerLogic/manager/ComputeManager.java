@@ -17,8 +17,8 @@ public class ComputeManager {
 		NavigationStep step = new NavigationStep(delta);
 		Report report = Report.getInstance();
 		report.addStep(step);
-		rootBM.saveRootPage("BM");
-		rootBUT.saveRootPage("BUT");
+		rootBM.saveVisitedPage("BM");
+		rootBUT.saveVisitedPage("BUT");
 		System.out.println("[ComputeManager]: Passo di navigazione creato: URL= " + rootBM.getUrl());
 		System.out.println("											   Delta= " + step.getDelta().getDelta());
 		System.out.println("[ComputeManager]: Aggiunto il passo iniziale al report");

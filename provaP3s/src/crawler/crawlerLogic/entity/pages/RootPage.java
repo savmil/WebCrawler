@@ -26,7 +26,7 @@ public class RootPage extends VisitedPage{
 	public void setElements(ArrayList<Element> elements) {
 		this.elementList = elements;
 	}
-	public void saveRootPage(String directory)
+	public void saveVisitedPage(String directory)
 	{
 		try
 		{
